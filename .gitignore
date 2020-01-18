@@ -1,0 +1,15 @@
+*.exe
+*.o
+*.a
+*.out
+*.class
+tmp
+.DS_Store
+*.pyc
+*.swp
+*_cpy_*
+*.dSYM*
+log.txt
+.vscode
+/test
+
