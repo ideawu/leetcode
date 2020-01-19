@@ -21,13 +21,13 @@ struct Match{
 	}
 	void add(char c){
 		int f = _map[c]++;
-		if(f == 0 && _map[c] > 0){
+		if(f == 0){
 			count ++;
 		}
 	}
 	void del(char c){
 		int f = _map[c]--;
-		if(f > 0 && _map[c] == 0){
+		if(f == 1){
 			count --;
 		}
 	}
