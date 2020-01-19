@@ -39,6 +39,7 @@ void setZeroes(vector<vector<int>>& matrix) {
 			for(int i=0; i<c; i++){
 				if(matrix[r][i] == 0){
 					rf = true;
+					// TODO: improve
 					for(int n=0; n<r; n++){
 						matrix[n][i] = 0;
 					}
@@ -56,6 +57,7 @@ void setZeroes(vector<vector<int>>& matrix) {
 			for(int i=0; i<r; i++){
 				if(matrix[i][c] == 0){
 					cf = true;
+					// TODO: improve
 					for(int n=0; n<c; n++){
 						matrix[i][n] = 0;
 					}
