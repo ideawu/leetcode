@@ -6,8 +6,8 @@
 using namespace std;
 
 ListNode* deleteDuplicates(ListNode* head) {
-	ListNode *init = new ListNode(-1);
-	init->next = head;
+	ListNode *dummy = new ListNode(-1);
+	dummy->next = head;
 
 	ListNode *prev = init;
 	while(prev->next){
@@ -23,7 +23,7 @@ ListNode* deleteDuplicates(ListNode* head) {
 		}
 	}
 
-	return init->next;
+	return dummy->next;
 }
 
 int main(int argc, char **argv){
@@ -41,6 +41,8 @@ int main(int argc, char **argv){
 
 	return 0;
 }
+
+// 通过增加虚拟结点(before begin and after last)可以简化一些操作
 
 /*
 Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
