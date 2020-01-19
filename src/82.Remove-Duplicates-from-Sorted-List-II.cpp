@@ -8,8 +8,7 @@ using namespace std;
 ListNode* deleteDuplicates(ListNode* head) {
 	ListNode *dummy = new ListNode(-1);
 	dummy->next = head;
-
-	ListNode *prev = init;
+	ListNode *prev = dummy;
 	while(prev->next){
 		ListNode *curr = prev->next;
 		while(curr->next && curr->next->val == prev->next->val){
@@ -22,7 +21,27 @@ ListNode* deleteDuplicates(ListNode* head) {
 			prev->next = curr->next;
 		}
 	}
+	return dummy->next;
+}
 
+ListNode* deleteDuplicates2(ListNode* head) {
+	ListNode *dummy = new ListNode(-1);
+	dummy->next = head;
+	ListNode *prev = dummy;
+	ListNode *node = head;
+	while(node){
+		bool dup = false;
+		while(node->next && node->val == node->next->val){
+			node->next = node->next->next;
+			dup = true;
+		}
+		if(dup){
+			prev->next = node->next;
+		}else{
+			prev = node;
+		}
+		node = node->next;
+	}
 	return dummy->next;
 }
 
