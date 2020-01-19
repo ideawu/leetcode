@@ -44,7 +44,7 @@ string build_line(vector<string>& words, int s, int e, int maxWidth){
 }
 
 vector<string> fullJustify(vector<string>& words, int maxWidth) {
-    vector<string> ret;
+	vector<string> ret;
 	int s = 0;
 	int e = s;
 	int w = 0;
