@@ -6,28 +6,24 @@
 using namespace std;
 
 ListNode* deleteDuplicates(ListNode* head) {
-	ListNode *ret = NULL;
-	ListNode *prev = NULL;
-	ListNode *na = head;
-	while(na){
-		ListNode *nb = na->next;
-		if(nb && na->val == nb->val){
-			do{
-				nb = nb->next;
-				na->next = nb;
-			}while(nb && na->val == nb->val);
-			if(prev){
-				prev->next = nb;
-			}
-		}else{
-			if(!ret){
-				ret = na;
-			}
-			prev = na;
+	ListNode *init = new ListNode(-1);
+	init->next = head;
+
+	ListNode *prev = init;
+	while(prev->next){
+		ListNode *curr = prev->next;
+		while(curr->next && curr->next->val == prev->next->val){
+			// point to last duplicated node
+			curr = curr->next;
 		}
-		na = na->next;
+		if(curr == prev->next){ // duplicated not found
+			prev = curr;
+		}else{
+			prev->next = curr->next;
+		}
 	}
-	return ret;
+
+	return init->next;
 }
 
 int main(int argc, char **argv){
