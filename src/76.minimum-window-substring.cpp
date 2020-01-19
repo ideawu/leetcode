@@ -1,7 +1,17 @@
-    string minWindow(string s, string t) {
-        
-    }
-	
+#include <stdio.h>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string minWindow(string s, string t) {
+    
+}
+
+int main(int argc, char **argv){
+	return 0;
+}
+
 /*
 Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).
 
