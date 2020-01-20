@@ -17,19 +17,24 @@ ListNode* reverseList(ListNode *head, int m){
 }
 
 ListNode* reverseBetween(ListNode* head, int m, int n) {
-	ListNode *prev = NULL;
+	ListNode *dummy = new ListNode(-1);
+	dummy->next = head;
+	ListNode *prev = dummy;
 	ListNode *node = head;
 	for(int i=1; i<m; i++){
 		prev = node;
 		node = node->next;
 	}
-	ListNode *rev = reverseList(node, n-m+1);
-	if(prev == NULL){
-		return rev;
-	}else{
-		prev->next = rev;
-		return head;
+
+	for(int i=m; i<n; i++){
+		ListNode *next = node->next;
+		node->next = next->next;
+		next->next = prev->next;
+		prev->next = next;
+		node = node->next;
 	}
+
+	return dummy->next;
 }
 
 int main(int argc, char **argv){
