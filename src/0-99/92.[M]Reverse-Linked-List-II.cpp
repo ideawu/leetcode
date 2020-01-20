@@ -31,7 +31,6 @@ ListNode* reverseBetween(ListNode* head, int m, int n) {
 		node->next = next->next;
 		next->next = prev->next;
 		prev->next = next;
-		node = node->next;
 	}
 
 	return dummy->next;
