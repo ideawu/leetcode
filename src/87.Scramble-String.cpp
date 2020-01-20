@@ -2,6 +2,9 @@ bool isScramble(string s1, string s2) {
 	
 }
 /*
+87. Scramble String
+[HARD]
+
 Given a string s1, we may represent it as a binary tree by partitioning it to two non-empty substrings recursively.
 
 Below is one possible representation of s1 = "great":
