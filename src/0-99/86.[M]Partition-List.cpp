@@ -1,14 +1,38 @@
-ListNode* partition(ListNode* head, int x) {
-	ListNode *prev, *curr, *lo;
-	if(found){
-		prev->next = curr->next;
+#include <stdio.h>
+#include <string>
+#include <vector>
+#include "../include/list.h"
 
-		curr->next = lo->next;
-		lo->next = curr;
-		lo = curr;
-	}else{
-		prev = prev->next;
+using namespace std;
+
+ListNode* partition(ListNode* head, int x) {
+	ListNode *dummy = new ListNode(0);
+	dummy->next = head;
+	ListNode *lo = dummy;
+	ListNode *p = head;
+	ListNode *n = p->next;
+	while(n){
+		if(n->val < x){
+			p->next = n->next;
+			n->next = lo->next;
+			lo->next = n;
+
+			lo = lo->next;
+			n = p->next;
+		}else{
+			n = n->next;
+			p = p->next;
+		}
 	}
+	return dummy->next;
+}
+
+int main(int argc, char **argv){
+	ListNode *head = build_list("1->4->3->2->5->2");
+	print_list(head);
+	head = partition(head, 3);
+	print_list(head);
+	return 0;
 }
 
 /*
