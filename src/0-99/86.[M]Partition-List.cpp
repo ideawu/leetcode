@@ -10,6 +10,11 @@ ListNode* partition(ListNode* head, int x) {
 	dummy->next = head;
 	ListNode *lo = dummy;
 	ListNode *p = head;
+	// 不是必须
+	while(p->val < x){
+		lo = p;
+		p = p->next;
+	}
 	ListNode *n = p->next;
 	while(n){
 		if(n->val < x){
@@ -20,8 +25,8 @@ ListNode* partition(ListNode* head, int x) {
 			lo = lo->next;
 			n = p->next;
 		}else{
-			n = n->next;
 			p = p->next;
+			n = p->next;
 		}
 	}
 	return dummy->next;
