@@ -1,3 +1,23 @@
+#include <stdio.h>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int maximalRectangle(vector<vector<char>>& matrix) {
+	int m = matrix.size();
+	int n = matrix[0].size();
+	for(int x=0; x<m; x++){
+		for(int y=0; y<n; y++){
+			
+		}
+	}
+}
+
+int main(int argc, char **argv){
+	return 0;
+}
+
 /*
 解题思路也许可以暴力破解, 然后再进行优化.
 
