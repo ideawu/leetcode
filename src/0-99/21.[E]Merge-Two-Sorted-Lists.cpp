@@ -30,15 +30,6 @@ ListNode* mergeTwoLists2(ListNode* l1, ListNode* l2) {
 	node = head;
 
 	while(1){
-		if(l1->val < l2->val){
-			node->next = l1;
-			l1 = l1->next;
-		}else{
-			node->next = l2;
-			l2 = l2->next;
-		}
-		node = node->next;
-
 		if(!l1){
 			node->next = l2;
 			break;
@@ -47,6 +38,15 @@ ListNode* mergeTwoLists2(ListNode* l1, ListNode* l2) {
 			node->next = l1;
 			break;
 		}
+
+		if(l1->val < l2->val){
+			node->next = l1;
+			l1 = l1->next;
+		}else{
+			node->next = l2;
+			l2 = l2->next;
+		}
+		node = node->next;
 	}
 
 	return head;
@@ -65,15 +65,6 @@ ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
 	ListNode *dummy = new ListNode(0);
 	ListNode *node = dummy;
 	while(1){
-		if(l1->val < l2->val){
-			node->next = l1;
-			l1 = l1->next;
-		}else{
-			node->next = l2;
-			l2 = l2->next;
-		}
-		node = node->next;
-
 		if(!l1){
 			node->next = l2;
 			break;
@@ -82,6 +73,15 @@ ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
 			node->next = l1;
 			break;
 		}
+
+		if(l1->val < l2->val){
+			node->next = l1;
+			l1 = l1->next;
+		}else{
+			node->next = l2;
+			l2 = l2->next;
+		}
+		node = node->next;
 	}
 	return dummy->next;
 }

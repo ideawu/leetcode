@@ -20,3 +20,15 @@ static void print_matrix(vector<vector<int>> &matrix){
 		printf("\n");
 	}
 }
+
+static double _stime = 0;
+static double _etime = 0;
+void runtime(){
+	_etime = microtime();
+	if(_stime == 0){
+		//
+	}else{
+		printf("time elapse: %.6f\n", _etime - _stime);
+	}
+	_stime = _etime;
+}

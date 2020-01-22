@@ -16,16 +16,15 @@ ListNode* build_list(const string &str){
 	int s = 0;
 	int e;
 	for(int i=0; i<=str.size(); i++){
-		if(i == str.size() || str[i] == '-'){
+		if(i == str.size() || (str[i] == '-' && str[i+1] == '>')){
 			e = i - 1;
 
+			char buf[32];
+			memcpy(buf, str.data() + s, e - s + 1);
+			buf[e - s + 1] = '\0';
+
 			// parseInt
-			int n = 0;
-			for(int j=s; j<=e; j++){
-				if(str[j] >= '0' && str[j] <= '9'){
-					n = n * 10 + str[j] - '0';
-				}
-			}
+			int n = atoi(buf);
 
 			ListNode *node = new ListNode(n);
 			if(!head){
