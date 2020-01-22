@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
-#include "../include/util.h"
+#include "../include/all.h"
 
 using namespace std;
 

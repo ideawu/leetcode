@@ -1,31 +1,27 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
-#include "../include/list.h"
+#include "../include/all.h"
 
 using namespace std;
 
-ListNode* reverseList(ListNode *head, int m){
-	ListNode *prev = head;
-	for(int i=1; i<m; i++){
-		ListNode *node = prev->next;
-		prev->next = node->next;
-		node->next = head;
-		head = node;
-	}
-	return head;
-}
+/***********************************************************
+# 解题思路
 
+* 引入新的头节点, 简化处理逻辑, 应对旧的头节点发生变化的情况
+* prev 用于遍历, 指向要移动的节点的前一个节点(m+1)
+* flag 是插入点
+***********************************************************/
 ListNode* reverseBetween(ListNode* head, int m, int n) {
 	ListNode *dummy = new ListNode(-1);
 	dummy->next = head;
 	ListNode *flag = dummy;
-	ListNode *prev = head;
+	ListNode *prev = flag->next;
 
 	for(int i=1; i<m; i++){
-		flag = prev;
-		prev = prev->next;
+		flag = flag->next;
 	}
+	prev = flag->next;
 
 	for(int i=m; i<n; i++){
 		ListNode *node = prev->next;
@@ -44,14 +40,6 @@ int main(int argc, char **argv){
 	print_list(node);
 	return 0;
 }
-
-/***********************************************************
-# 解题思路
-
-* 引入新的头节点, 简化处理逻辑, 应对旧的头节点发生变化的情况
-* prev 用于遍历, 指向要移动的节点的前一个节点(m+1)
-* flag 是插入点
-***********************************************************/
 
 /*
 Reverse a linked list from position m to n. Do it in one-pass.

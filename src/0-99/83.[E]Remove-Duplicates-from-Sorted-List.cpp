@@ -1,19 +1,20 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
-#include "include/list.h"
+#include "../include/all.h"
 
 using namespace std;
 
 ListNode* deleteDuplicates(ListNode* head) {
-	ListNode *node = head;
-	while(node){
-		while(node->next && node->val == node->next->val){
-			node->next = node->next->next;
+	ListNode *prev = head;
+	while(prev->next){
+		ListNode *node = prev->next;
+		if(prev->val == node->val){
+			prev->next = node->next;
+		}else{
+			prev = prev->next;
 		}
-		node = node->next;
 	}
-	return head;
 }
 
 int main(int argc, char **argv){
@@ -31,6 +32,13 @@ int main(int argc, char **argv){
 
 	return 0;
 }
+
+/***********************************************************
+# 解题思路
+
+* prev 用于遍历, 指向要删除的节点的前一个节点
+* 如果有删除, prev 不移动; 否则 prev 移动到下一个节点
+***********************************************************/
 
 /*
 Given a sorted linked list, delete all duplicates such that each element appear only once.

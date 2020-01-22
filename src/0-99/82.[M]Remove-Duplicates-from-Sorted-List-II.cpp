@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
-#include "include/list.h"
+#include "../include/all.h"
 
 using namespace std;
 
-ListNode* deleteDuplicates(ListNode* head) {
+ListNode* deleteDuplicates1(ListNode* head) {
 	ListNode *dummy = new ListNode(-1);
 	dummy->next = head;
 	ListNode *prev = dummy;
@@ -45,6 +45,19 @@ ListNode* deleteDuplicates2(ListNode* head) {
 	return dummy->next;
 }
 
+ListNode* deleteDuplicates(ListNode* head) {
+	ListNode *dummy = new ListNode(0);
+	dummy->next = head;
+
+	ListNode *prev = dummy;
+	while(prev->next){
+		ListNode *curr = prev->next;
+		// TODO:
+	}
+
+	return dummy->next;
+}
+
 int main(int argc, char **argv){
 	ListNode *head;
 
@@ -61,7 +74,12 @@ int main(int argc, char **argv){
 	return 0;
 }
 
-// 通过增加虚拟结点(before begin and after last)可以简化一些操作
+/***********************************************************
+# 解题思路
+
+* 引入新的头节点, 简化处理逻辑, 应对旧的头节点发生变化的情况
+* prev 用于遍历, 指向要删除的节点的前一个节点
+***********************************************************/
 
 /*
 Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.

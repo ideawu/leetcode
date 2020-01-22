@@ -22,7 +22,9 @@ ListNode* build_list(const string &str){
 			// parseInt
 			int n = 0;
 			for(int j=s; j<=e; j++){
-				n = n * 10 + str[j] - '0';
+				if(str[j] >= '0' && str[j] <= '9'){
+					n = n * 10 + str[j] - '0';
+				}
 			}
 
 			ListNode *node = new ListNode(n);
