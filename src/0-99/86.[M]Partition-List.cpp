@@ -8,8 +8,15 @@ using namespace std;
 ListNode* partition(ListNode* head, int x) {
 	ListNode *dummy = new ListNode(0);
 	dummy->next = head;
-	ListNode *flag = head;
+	ListNode *flag = dummy;
 	ListNode *prev = head;
+
+	// don't really need this
+	while(prev && prev->val < x){
+		flag = prev;
+		prev = prev->next;
+	}
+
 	while(prev->next){
 		ListNode *node = prev->next;
 		if(node->val < x){
@@ -18,11 +25,12 @@ ListNode* partition(ListNode* head, int x) {
 			flag->next = node;       // insert 2/2
 
 			flag = flag->next;
-			// prev = prev->next; // next has been removed, so prev remains
+			// prev = prev->next; // next has been removed, so prev stays
 		}else{
 			prev = prev->next;
 		}
 	}
+
 	return dummy->next;
 }
 
@@ -33,6 +41,15 @@ int main(int argc, char **argv){
 	print_list(head);
 	return 0;
 }
+
+/***********************************************************
+# 解题思路
+
+* 引入新的头节点, 简化处理逻辑, 应对旧的头节点发生变化的情况
+* 为了符合题目的输出, 增加查找 flag 的操作(不做此步骤不影响逻辑正确)
+* prev 用于遍历, 指向要移动的节点的前一个节点
+* flag 是插入点, 指向第一个不符合条件的节点(或最后一个符合条件的节点)
+***********************************************************/
 
 /*
 Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
