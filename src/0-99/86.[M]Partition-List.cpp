@@ -8,25 +8,19 @@ using namespace std;
 ListNode* partition(ListNode* head, int x) {
 	ListNode *dummy = new ListNode(0);
 	dummy->next = head;
-	ListNode *lo = dummy;
-	ListNode *p = head;
-	// 不是必须
-	while(p->val < x){
-		lo = p;
-		p = p->next;
-	}
-	ListNode *n = p->next;
-	while(n){
-		if(n->val < x){
-			p->next = n->next;
-			n->next = lo->next;
-			lo->next = n;
+	ListNode *flag = head;
+	ListNode *prev = head;
+	while(prev->next){
+		ListNode *node = prev->next;
+		if(node->val < x){
+			prev->next = node->next; // remove node
+			node->next = flag->next; // insert 1/2
+			flag->next = node;       // insert 2/2
 
-			lo = lo->next;
-			n = p->next;
+			flag = flag->next;
+			// prev = prev->next; // next has been removed, so prev remains
 		}else{
-			p = p->next;
-			n = p->next;
+			prev = prev->next;
 		}
 	}
 	return dummy->next;

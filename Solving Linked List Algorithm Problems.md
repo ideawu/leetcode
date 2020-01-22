@@ -1,29 +1,25 @@
 # 解题要点
 
-链表的操作一般会引入辅助节点, 这样可以简化操作. 因为链表操作大多会围绕
-某个支点(pivot)性质节点进行. 创建一个新节点作为支点, 比从原链表中选取
-支点更方便得多. 因为如果从原链表中选取的话, 需要单独遍历, 或者在正常操
-作时选取. 前者增加了遍历次数(时间复杂度), 后者增加代码复杂度让遍历操作
-产生两个分支(一个是已选取, 一个是未选取).
+### 头节点
 
-另外一个要点是遍历时的指针到底是指向符合条件的节点, 还是符合条件的前一
-个节点? 如果是指向符合条件的节点, 那么需要在遍历的过程额外维护该节点的
-前节点指针; 如果是指向前节点, 则在遍历时少维护一个指针.
+链表操作常常会改变头节点的指向, 新建一个辅助节点作为新的头节点可以让操作更容易和简洁. 如果不引入新的头节点的话, 需要在开始时找出新的头节点, 增加了代码复杂度.
 
-# Breaking Point
+### 旗节点
 
-Operations on Linked List usually needs a pivot node, this
-pivot node can be chosen from original list, or newly
-created. Creating a new node as pivot could make things much
-more easier. Because to chose a pivot node needs to iterate
-over the list, or during operation iterating procedure. The
-first choice increase time complexity, while the second
-choice increase code complexity as two condition branches
-during iterating(one for pivot being set, one for not set).
+链表操作大多会在旗节点后面进行节点插入操作. 旗节点初始时指向新的头节点, 然后在操作过程中不断移动.
 
-Next is should we make the iterator pointing to the node
-that needs to be operated on, or to the previous node before
-that? If the iterator is pointing to the target node, we
-need to keep track of previous node as well; If pointing to
-the previous node before target node, we use only one
-pointer while iterating.
+### 指针节点
+
+链表遍历从旧的头节点开始, 那么, 指针到底是指向符合条件的节点, 还是符合条件的前一个节点? 在引入新的头节点之后, 旧的头节点是不需要移动位置的, 无论它是否真的符合条件.
+
+所以, 可以确定, 指针指向的是符合条件的前一个节点. 这是非常让人疑惑的地方.
+
+另外, 由于指针指向的是前一个节点, 所以删除符合条件的节点之后, 指针不移动.
+
+### 插入节点操作
+
+插入操作隐含着插入到目标节点后面. 要插入某个节点, 需要进行两步操作, 1, 把新节点指向目标节点的后面; 2, 目标节点指向新节点.
+
+### 删除节点操作
+
+要删除某个节点, 只需要一步操作, 把目标的前节点指向目标的后节点即可.
