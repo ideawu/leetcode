@@ -5,6 +5,15 @@
 
 using namespace std;
 
+/***********************************************************
+# 解题思路
+
+* 申请新变量指向两个链表
+* 待定结果保存到 l1 上, 如果 l1 比 l2 短, 则将 l2 的节点转接到 l1 上
+* 所以 l2 肯定先遍历完
+* l2 遍历完之后, 就是将 l1 剩余的节点与 carry 相加并算出新 carry
+* 最后可能需要创建新节点
+***********************************************************/
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
 	ListNode *a = l1;
 	ListNode *b = l2;
@@ -50,16 +59,6 @@ int main(int argc, char **argv){
 	print_list(c);
 	return 0;
 }
-
-/***********************************************************
-# 解题思路
-
-* 申请新变量指向两个链表
-* 待定结果保存到 l1 上, 如果 l1 比 l2 短, 则将 l2 的节点转接到 l1 上
-* 所以 l2 肯定先遍历完
-* l2 遍历完之后, 就是将 l1 剩余的节点与 carry 相加并算出新 carry
-* 最后可能需要创建新节点
-***********************************************************/
 
 /*
 You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
