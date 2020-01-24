@@ -33,7 +33,7 @@ bool nextPermutationHelper(vector<int> &nums, int s){
 		int e = nums.size() - 1;
 		int f = nums[s];
 		while(b < e){
-			int m = e - (e-b)/2;
+			int m = e - (e-b)/2; // lower_bound - 1
 			// int m = b + (e-b)/2;
 			if(nums[m] <= f){
 				e = m - 1;
