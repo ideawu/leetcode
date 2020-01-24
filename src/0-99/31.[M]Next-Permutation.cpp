@@ -33,7 +33,7 @@ bool nextPermutationHelper(vector<int> &nums, int s){
 		int e = nums.size() - 1;
 		while(b < e){
 			int m = b + (e-b+1)/2; // 因为求的是前一个, 所以使用"+1中点公式"
-			// int m = e - (e-b)/2; // 反射 upper_bound
+			// int m = e - (e-b)/2; // 反向 upper_bound
 			if(nums[m] <= nums[s]){
 				e = m - 1;
 			}else{
