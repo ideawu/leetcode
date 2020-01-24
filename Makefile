@@ -2,4 +2,5 @@
 # 例如 make 81
 
 %:
-	echo $(shell find src | grep "/$@\.")
+	g++ -std=c++11 $(shell find src | grep "/$@\.")
+
