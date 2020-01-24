@@ -30,20 +30,21 @@ bool nextPermutationHelper(vector<int> &nums, int s){
 		
 		// 优化点: 改成二分查找
 		int b = s + 1;
-		int e = nums.size() - 1;
+		int e = nums.size()-1;
+		int f = nums[s];
 		while(b < e){
-			int m = b + (e-b+1)/2; // 因为求的是前一个, 所以使用"+1中点公式"
-			// int m = e - (e-b)/2; // 反向 upper_bound
-			if(nums[m] <= nums[s]){
+			int m = b + (e-b+1)/2; // lower_bound - 1
+			if(nums[m] <= f){
 				e = m - 1;
 			}else{
 				b = m;
 			}
+			// printf("%d %d %d\n", b, e, m);
 		}
-		if(nums[b] <= nums[s]){
+		if(nums[b] <= f){
 			return false;
 		}else{
-			std::swap(nums[s], nums[e]);
+			std::swap(nums[s], nums[b]);
 			std::reverse(nums.begin() + s + 1, nums.begin() + nums.size());
 			return true;
 		}

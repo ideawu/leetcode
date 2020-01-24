@@ -14,7 +14,7 @@ using namespace std;
 vector<int> searchRange(vector<int>& nums, int target) {
 	vector<int> ret = {-1, -1};
     int s = 0;
-	int e = nums.size() - 1;
+	int e = nums.size()-1;
 	// lower_bound
 	while(s < e){
 		int m = s + (e-s)/2;
@@ -24,12 +24,13 @@ vector<int> searchRange(vector<int>& nums, int target) {
 			e = m;
 		}
 	}
-	if(nums[s] != target){
+	if(e == nums.size() || nums[e] != target){
 		return ret;
 	}
-	ret[0] = s;
+	ret[0] = e;
 	
-	e = nums.size() - 1;
+	s = e;
+	e = nums.size()-1;
 	// upper_bound
 	while(s < e){
 		int m = s + (e-s)/2;
@@ -39,10 +40,9 @@ vector<int> searchRange(vector<int>& nums, int target) {
 			e = m;
 		}
 	}
-	if(nums[s] > target){
-		s --;
-	}
-	ret[1] = s;
+	e --;
+	ret[1] = e;
+
 	return ret;
 }
 
