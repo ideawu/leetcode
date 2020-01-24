@@ -30,7 +30,7 @@ vector<int> searchRange(vector<int>& nums, int target) {
 	ret[0] = e;
 	
 	s = e;
-	e = nums.size()-1;
+	e = nums.size(); // upper_bound
 	// upper_bound
 	while(s < e){
 		int m = s + (e-s)/2;

@@ -30,10 +30,11 @@ bool nextPermutationHelper(vector<int> &nums, int s){
 		
 		// 优化点: 改成二分查找
 		int b = s + 1;
-		int e = nums.size()-1;
+		int e = nums.size() - 1;
 		int f = nums[s];
 		while(b < e){
-			int m = b + (e-b+1)/2; // lower_bound - 1
+			int m = e - (e-b)/2;
+			// int m = b + (e-b)/2;
 			if(nums[m] <= f){
 				e = m - 1;
 			}else{
