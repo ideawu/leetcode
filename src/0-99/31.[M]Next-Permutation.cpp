@@ -10,8 +10,8 @@ using namespace std;
 
 * 采用递归分解的方法:
 * 如果右边 n-1 个元素存在下一个排列, 则完成.
-* 否则, 右边是倒序的. 让第 0 个元素与次大的元素交换(如果有)并反转 n-1 个元素.
-* 难点在于, 如果优化成二分查找, 那么要注意对中点公式的选取, 因为不是精确查找.
+* 否则, 右边是倒序的. 让第 0 个元素与与比它大的最小元素交换(如果有)并反转 n-1 个元素.
+* 难点在于, 如果优化成二分查找, 那么要注意对中点公式的选取, 因为是 lower_bound-1.
 ***********************************************************/
 bool nextPermutationHelper(vector<int> &nums, int s){
 	if(s >= nums.size() - 1){
@@ -31,27 +31,22 @@ bool nextPermutationHelper(vector<int> &nums, int s){
 		// 优化点: 改成二分查找
 		int b = s + 1;
 		int e = nums.size() - 1;
-		while(1){
-			if(b >= e){
-				if(e <= s || nums[e] <= nums[s]){
-					return false;
-				}else{
-					std::swap(nums[s], nums[e]);
-					std::reverse(nums.begin() + s + 1, nums.begin() + nums.size());
-					return true;
-				}
-				break;
-			}
-			// 因为查找的是"前一个", 所以使用 +1 中点公式
-			int m = b + (e-b+1)/2;
-			if(nums[m] < nums[s]){
+		while(b < e){
+			int m = b + (e-b+1)/2; // 因为求的是前一个, 所以使用"+1中点公式"
+			// int m = e - (e-b)/2; // 反射 upper_bound
+			if(nums[m] <= nums[s]){
 				e = m - 1;
 			}else{
 				b = m;
 			}
 		}
-		
-		return false;
+		if(nums[b] <= nums[s]){
+			return false;
+		}else{
+			std::swap(nums[s], nums[e]);
+			std::reverse(nums.begin() + s + 1, nums.begin() + nums.size());
+			return true;
+		}
 	}
 }
 void nextPermutation(vector<int>& nums) {
