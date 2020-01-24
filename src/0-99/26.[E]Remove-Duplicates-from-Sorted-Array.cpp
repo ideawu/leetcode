@@ -34,44 +34,14 @@ int main(int argc, char **argv){
 	vector<int> nums;
 	
 	nums = {1,1,2};
-	n = removeDuplicates2(nums);
-	for(int i=0; i<n; i++){
-		printf("%d ", nums[i]);
-	}
-	printf("\n");
+	n = removeDuplicates(nums);
+	print_array(nums, n);
 	
 	nums = {0,0,1,1,1,2,2,3,3,4};
-	n = removeDuplicates2(nums);
-	for(int i=0; i<n; i++){
-		printf("%d ", nums[i]);
-	}
-	printf("\n");
+	n = removeDuplicates(nums);
+	print_array(nums, n);
 
 	return 0;
-}
-
-int removeAllDuplicates(vector<int>& nums) {
-	int p = -1;
-	int s = 0;
-	int e = s + 1;
-	while(1){
-		if(s == nums.size()){
-			break;
-		}
-		if(e == nums.size() || nums[s] != nums[e]){
-			if(s + 1 == e){
-				p ++;
-				if(p != s){
-					nums[p] = nums[s];
-				}
-			}
-			s = e;
-			e = s + 1;
-		}else{
-			e ++;
-		}
-	}
-	return p + 1;
 }
 
 /*

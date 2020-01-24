@@ -5,10 +5,6 @@
 
 using namespace std;
 
-int main(int argc, char **argv){
-	return 0;
-}
-
 /***********************************************************
 # 解题思路
 
@@ -26,6 +22,13 @@ int removeElement(vector<int>& nums, int val) {
 		}
 	}
 	return p + 1;
+}
+
+int main(int argc, char **argv){
+	vector<int> nums = {3, 2, 2, 3};
+	int len = removeElement(nums, 3);
+	print_array(nums, len);
+	return 0;
 }
 
 /*
