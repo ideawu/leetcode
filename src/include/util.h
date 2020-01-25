@@ -12,15 +12,6 @@ static inline double microtime(){
 	return ret;
 }
 
-static void print_matrix(vector<vector<int>> &matrix){
-	for(auto &row : matrix){
-		for(auto &e : row){
-			printf("%2d ", e);
-		}
-		printf("\n");
-	}
-}
-
 static double _stime = 0;
 static double _etime = 0;
 void runtime(){

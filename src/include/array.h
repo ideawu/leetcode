@@ -12,3 +12,12 @@ void print_array(const std::vector<int> &nums, int count=INT_MAX){
 	}
 	printf("]\n");
 }
+
+static void print_matrix(vector<vector<int>> &matrix){
+	for(auto &row : matrix){
+		for(auto &e : row){
+			printf("%2d ", e);
+		}
+		printf("\n");
+	}
+}
