@@ -9,7 +9,7 @@ using namespace std;
 # 解题思路
 
 * 因为会改变头节点, 所以引入辅助头节点
-* flag 节点了插入点(插入其之后)
+* flag 节点是插入点(插入其之后)
 ***********************************************************/
 ListNode* swapPairs(ListNode* head) {
 	ListNode *dummy = new ListNode(-1);
