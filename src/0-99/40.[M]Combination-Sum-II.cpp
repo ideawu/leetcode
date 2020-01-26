@@ -14,9 +14,9 @@ using namespace std;
 *	步的结果(路径)传给后一步.
 * 关于去重, 有比较 tricky 的地方.
 ***********************************************************/
-int c0 = 0;
+int c2 = 0;
 void combinationSumHelper(vector<vector<int>> &ret, vector<int> &prev, vector<int>& candidates, int start, int target){
-	c0 ++;
+	c2 ++;
 	if(start >= candidates.size()){
 		return;
 	}
@@ -51,9 +51,9 @@ vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
 // 虽然这种遍历方式是正确的, 但我无法理解为什么要采用此种不直观的遍历方式,
 // 它的理论基础是什么?
 // 似乎是跳过某些无效的递归调用?
-int c1 = 0;
+int c3 = 0;
 void helper(vector<int>& num, int target, int start, vector<int>& out, vector<vector<int>>& res) {
-	c1 ++;
+	c3 ++;
     if (target < 0) return;
     if (target == 0) { res.push_back(out); return; }
     for (int i = start; i < num.size(); ++i) {
@@ -79,7 +79,6 @@ int main(int argc, char **argv){
 	candidates = {10,1,2,7,6,1,5};
 	target = 8;
 	ret = combinationSum2(candidates, target);
-	printf("%d\n", c0);
 	print_matrix(ret);
 	
 	printf("\n");
@@ -91,11 +90,15 @@ int main(int argc, char **argv){
 	
 	printf("\n");
 	
-	candidates = {10,1,2,7,6,1,5};
+	c2 = 0;
+	c3 = 0;
+	candidates = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 	target = 8;
+	ret = combinationSum2(candidates, target);
+	printf("%d\n", c2);
 	ret = combinationSum3(candidates, target);
-	printf("%d\n", c1);
-	print_matrix(ret);
+	printf("%d\n", c3);
+	// print_matrix(ret);
 	
 	return 0;
 }
