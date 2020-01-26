@@ -12,7 +12,7 @@ using namespace std;
 
 * 用递归来解
 * 对于每一个元素 arr[i], t = t - arr[i], 然后再递归
-* 因为要求的是组合, 结果集不能包含相同的组合, 需要去重
+* 如果对源数据排序, 那么在生成过程中避免重复, 结果集不需要去重.
 * 优化空间:
 ***********************************************************/
 vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
