@@ -12,7 +12,7 @@ using namespace std;
 
 * 用递归来解
 * 对于每一个元素 arr[i], t = t - arr[i], 然后再递归
-* 如果对源数据排序, 那么在生成过程中避免重复, 结果集不需要去重.
+* 如何体现元素重复使用?
 * 优化空间:
 ***********************************************************/
 vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
@@ -38,6 +38,13 @@ int main(int argc, char **argv){
 	
 	return 0;
 }
+
+/*
+* 如果对源数据排序, 那么在生成过程中避免重复, 结果集不需要去重.
+* 关键点在于, 生成组合的过程, 虽然每一次元素可以多次使用, 但递归过程
+*	不能对源数据集回溯(已使用过的要排除), 否则无法避免重复,
+*	这一点非常重要! 为什么?
+*/
 
 /*
 Given a set of candidate numbers (candidates) (without duplicates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.
