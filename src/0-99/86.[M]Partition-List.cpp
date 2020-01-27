@@ -13,7 +13,7 @@ using namespace std;
 * prev 用于遍历, 指向要移动的节点的前一个节点
 * flag 是插入点, 指向最后一个符合条件的节点
 ***********************************************************/
-ListNode* partition(ListNode* head, int x) {
+ListNode* partition2(ListNode* head, int x) {
 	ListNode *dummy = new ListNode(-INT_MAX);
 	dummy->next = head;
 	ListNode *flag = dummy;
@@ -40,6 +40,29 @@ ListNode* partition(ListNode* head, int x) {
 	}
 
 	return dummy->next;
+}
+
+ListNode* partition(ListNode* head, int x) {
+	ListNode dummy(-1);
+	dummy.next = head;
+	ListNode *flag = &dummy;
+	ListNode *prev = head;
+	while(prev && prev->val < x){
+		flag = prev;
+		prev = prev->next;
+	}
+	while(prev && prev->next){
+		ListNode *next = prev->next;
+		if(next->val < x){
+			prev->next = next->next;
+			next->next = flag->next;
+			flag->next = next;
+			flag = flag->next;
+		}else{
+			prev = prev->next;
+		}
+	}
+	return dummy.next;
 }
 
 int main(int argc, char **argv){
