@@ -5,10 +5,6 @@
 
 using namespace std;
 
-int main(int argc, char **argv){
-	return 0;
-}
-
 /***********************************************************
 # 解题思路
 
@@ -16,7 +12,34 @@ int main(int argc, char **argv){
 * 理论上, 应该可以用矩阵变换推导出来.
 ***********************************************************/
 void rotate(vector<vector<int>>& matrix) {
-    
+	int m = matrix.size();
+    std::reverse(matrix.begin(), matrix.end());
+	for(int i=0; i<m; i++){
+		for(int j=i+1; j<m; j++){
+			std::swap(matrix[i][j], matrix[j][i]);
+		}
+	}
+}
+
+int main(int argc, char **argv){
+	vector<vector<int>> matrix;
+	
+	matrix.clear();
+	matrix.push_back({1,2,3});
+	matrix.push_back({4,5,6});
+	matrix.push_back({7,8,9});
+	rotate(matrix);
+	print_matrix(matrix);
+	
+	matrix.clear();
+	matrix.push_back({ 5, 1, 9,11});
+	matrix.push_back({ 2, 4, 8,10});
+	matrix.push_back({13, 3, 6, 7});
+	matrix.push_back({15,14,12,16});
+	rotate(matrix);
+	print_matrix(matrix);
+	
+	return 0;
 }
 
 /*

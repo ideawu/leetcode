@@ -8,8 +8,20 @@ using namespace std;
 /***********************************************************
 # 解题思路
 
+* 就是实现 lower_bound
 ***********************************************************/
 int searchInsert(vector<int>& nums, int target) {
+	int s = 0;
+	int e = nums.size();
+	while(s < e){
+		int m = s + (e-s)/2;
+		if(nums[m] < target){
+			s = m + 1;
+		}else{
+			e = m;
+		}
+	}
+	return s;
 }
 
 int main(int argc, char **argv){

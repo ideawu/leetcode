@@ -5,17 +5,83 @@
 
 using namespace std;
 
-int main(int argc, char **argv){
-	return 0;
+/***********************************************************
+# 解题思路
+
+* 引入辅助节点
+* 使用前后指针 p, n, 尝试移动前指针 n, 如果间隔大于等于 k, 同时移动 p
+* 记录链表长度 s, 如果 k 大于等于链表长度, 取模 m
+* 	后指针 p 应该移动到移动第 s-m-1 位置
+***********************************************************/
+ListNode* rotateRight(ListNode* head, int k) {
+	if(k == 0) return head;
+	ListNode *p = head;
+	ListNode *n = head;
+	int s = 0;
+	while(1){
+		s ++;
+		if(n->next == NULL){
+			if(k >= s){
+				int m = k % s;
+				if(m == 0){
+					break;
+				}
+				int idx = s - m - 1;
+				// p at[0]
+				while(--idx >= 0){
+					p = p->next;
+				}
+			}
+			ListNode *nh = p->next;
+			n->next = head;
+			p->next = NULL;
+			return nh;
+		}
+		if(s > k){
+			p = p->next;
+		}
+		n = n->next;
+	}
+	return head;
 }
 
 /***********************************************************
 # 解题思路
 
+* 将链表首尾相连, 同时得出长度 s, 然后 m=k%s, 断开头节点 s-m-1 个节点后面即可 
 ***********************************************************/
-ListNode* rotateRight(ListNode* head, int k) {
+ListNode* rotateRight2(ListNode* head, int k) {
+	int s = 1;
+	ListNode *n = head;
+	while(n->next){
+		s ++;
+		n = n->next;
+	}
+	n->next = head;
 	
+	int m = k % s;
+	int i = s - m - 1;
+	n = head;
+	while(--i >= 0){
+		n = n->next;
+	}
+	
+	head = n->next;
+	n->next = NULL;
+	return head;
 }
+
+int main(int argc, char **argv){
+	ListNode *head = build_list("1->2->3->4->5");
+	head = rotateRight2(head, 2);
+	print_list(head);
+	
+	head = build_list("0->1->2");
+	head = rotateRight2(head, 4);
+	print_list(head);
+	return 0;
+}
+
 /*
 Given a linked list, rotate the list to the right by k places, where k is non-negative.
 
