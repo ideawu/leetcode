@@ -1,17 +1,16 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
+#include "../include/all.h"
 
 using namespace std;
 
+/***********************************************************
+# 解题思路
+
+***********************************************************/
 int maximalRectangle(vector<vector<char>>& matrix) {
-	int m = matrix.size();
-	int n = matrix[0].size();
-	for(int x=0; x<m; x++){
-		for(int y=0; y<n; y++){
-			
-		}
-	}
+
 }
 
 int main(int argc, char **argv){
