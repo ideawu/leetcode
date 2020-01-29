@@ -11,6 +11,20 @@ using namespace std;
 * 纯粹调剂气氛用的 Easy 题, 做就是了. 但是, 别做错了!
 ***********************************************************/
 vector<int> plusOne(vector<int>& digits) {
+	int c = 1;
+	for(int i=digits.size()-1; i>=0; i--){
+		if(c == 0){
+			break;
+		}
+		int n = digits[i] + c;
+		c = n / 10;
+		n = n % 10;
+		digits[i] = n;
+	}
+	if(c != 0){
+		digits.insert(digits.begin(), 1);
+	}
+	return digits;
 }
 
 int main(int argc, char **argv){
