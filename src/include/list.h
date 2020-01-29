@@ -9,6 +9,23 @@ struct ListNode {
 	ListNode(int x) : val(x), next(NULL) {}
 };
 
+ListNode* list_tail(ListNode *h){
+	while(h->next){
+		h = h->next;
+	}
+	return h;
+}
+
+ListNode* list_next(ListNode *h, int n){
+	for(int i=0; i<n; i++){
+		if(!h){
+			return NULL;
+		}
+		h = h->next;
+	}
+	return h;
+}
+
 // 1->2->3->3->4->4->5
 ListNode* build_list(const string &str){
 	ListNode *head = NULL;

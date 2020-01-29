@@ -5,19 +5,70 @@
 
 using namespace std;
 
-int main(int argc, char **argv){
-	return 0;
-}
-
 /***********************************************************
 # 解题思路
 
 * 问题是求两个链表有没有共用节点, 即两个链表的尾部 n 节点相同, 类似
-* 于两个链表的尾节点都指向了第3个链表.
+	于两个链表的尾节点都指向了第3个链表.
+* 使用两个指针分别遍历两个链表, 到达尾部时, 换成另一个头节点继续遍历.
 ***********************************************************/
 ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-	
+	ListNode *n1, *n2;
+	n1 = headA;
+	n2 = headB;
+	bool ex1 = false;
+	bool ex2 = false;
+	while(1){
+		if(n1 == n2){
+			return n1;
+		}
+		n1 = n1->next;
+		n2 = n2->next;			
+		if(!n1){
+			if(ex1){
+				return NULL;
+			}
+			ex1 = true;
+			n1 = headB;
+		}
+		if(!n2){
+			if(ex2){
+				return NULL;
+			}
+			ex2 = true;
+			n2 = headA;
+		}
+	}
 }
+
+int main(int argc, char **argv){
+	ListNode *h1, *h2, *h3;
+	ListNode *c;
+	
+	h1 = build_list("4->1");
+	h2 = build_list("5->0->1");
+	h3 = build_list("8->4->5");
+	list_tail(h1)->next = h3;
+	list_tail(h2)->next = h3;
+	c = getIntersectionNode(h1, h2);
+	printf("%d\n", (c? c->val : -1));
+	
+	h1 = build_list("0->9->1");
+	h2 = build_list("3");
+	h3 = build_list("2->4");
+	list_tail(h1)->next = h3;
+	list_tail(h2)->next = h3;
+	c = getIntersectionNode(h1, h2);
+	printf("%d\n", (c? c->val : -1));
+	
+	h1 = build_list("2->6->4");
+	h2 = build_list("1->5");
+	c = getIntersectionNode(h1, h2);
+	printf("%d\n", (c? c->val : -1));
+	
+	return 0;
+}
+
 /*
 Write a program to find the node at which the intersection of two singly linked lists begins.
 
