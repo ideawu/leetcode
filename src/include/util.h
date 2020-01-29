@@ -23,3 +23,22 @@ void runtime(){
 	}
 	_stime = _etime;
 }
+
+vector<string> str_split(string src, string sep){
+	vector<string> ret;
+	int s = 0;
+	while(1){
+		int e = src.find(sep, s);
+		if(e == string::npos){
+			e = src.size();
+		}
+		string p = src.substr(s, src.size() - s);
+		ret.push_back(p);
+		
+		s = e + sep.size();
+		if(e > src.size()){
+			break;
+		}
+	}
+	return ret;
+}
