@@ -10,13 +10,34 @@ using namespace std;
 /***********************************************************
 # 解题思路
 
-* 用递归来解
-* 对于每一个元素 arr[i], t = t - arr[i], 然后再递归
-* 如何体现元素重复使用?
-* 优化空间:
+* 这是一道图遍历题.
+* 注意图的节点可以重复处理(元素重复使用)
 ***********************************************************/
+void helper(vector<vector<int>> &ret, vector<int> &nums, int s, int target, vector<int> &pre){
+	if(target == 0){
+		ret.push_back(pre);
+		return;
+	}
+	for(int i=s; i<nums.size(); i++){
+		int n = 0;
+		while(1){ // 元素可重复使用
+			int t = target - nums[i] * (n+1);
+			if(t < 0){
+				break;
+			}
+			n ++;
+			pre.push_back(nums[i]);
+			helper(ret, nums, i+1, t, pre);
+		}
+		while(--n >= 0){
+			pre.pop_back();
+		}
+	}
+}
 vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
 	vector<vector<int>> ret;
+	vector<int> pre;
+	helper(ret, candidates, 0, target, pre);
 	return ret;
 }
 
@@ -38,14 +59,6 @@ int main(int argc, char **argv){
 	
 	return 0;
 }
-
-/*
-* 如果对源数据排序, 那么在生成过程中避免重复, 结果集不需要去重.
-* 关键点在于, 生成组合的过程, 虽然每一次元素可以多次使用, 但递归过程
-*	不能对源数据集回溯(已使用过的要排除), 否则无法避免重复,
-*	这一点非常重要! 为什么?
-* 因为要保证生成结果的有序性.
-*/
 
 /*
 Given a set of candidate numbers (candidates) (without duplicates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.
