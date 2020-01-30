@@ -9,14 +9,14 @@ struct ListNode {
 	ListNode(int x) : val(x), next(NULL) {}
 };
 
-ListNode* list_tail(ListNode *h){
+static ListNode* list_tail(ListNode *h){
 	while(h->next){
 		h = h->next;
 	}
 	return h;
 }
 
-ListNode* list_next(ListNode *h, int n){
+static ListNode* list_next(ListNode *h, int n){
 	for(int i=0; i<n; i++){
 		if(!h){
 			return NULL;
@@ -27,7 +27,7 @@ ListNode* list_next(ListNode *h, int n){
 }
 
 // 1->2->3->3->4->4->5
-ListNode* build_list(const string &str){
+static ListNode* build_list(const string &str){
 	ListNode *head = NULL;
 	ListNode *prev = NULL;
 	int s = 0;
@@ -59,7 +59,7 @@ ListNode* build_list(const string &str){
 	return head;
 }
 
-void print_list(ListNode *head){
+static void print_list(ListNode *head){
 	while(head){
 		printf("%d", head->val);
 		if(head->next){

@@ -1,3 +1,6 @@
+#ifndef _LEETCODE_UTIL_
+#define _LEETCODE_UTIL_
+
 #include <time.h>
 #include <sys/time.h>
 #include <stdio.h>
@@ -14,7 +17,7 @@ static inline double microtime(){
 
 static double _stime = 0;
 static double _etime = 0;
-void runtime(){
+static void runtime(){
 	_etime = microtime();
 	if(_stime == 0){
 		//
@@ -24,7 +27,7 @@ void runtime(){
 	_stime = _etime;
 }
 
-vector<string> str_split(string src, string sep){
+static vector<string> str_split(string src, string sep){
 	vector<string> ret;
 	int s = 0;
 	while(1){
@@ -42,3 +45,13 @@ vector<string> str_split(string src, string sep){
 	}
 	return ret;
 }
+
+string str_repeat(string s, int n){
+	string ret;
+	while(n-- > 0){
+		ret.append(s);
+	}
+	return ret;
+}
+
+#endif
