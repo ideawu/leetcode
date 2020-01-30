@@ -13,7 +13,20 @@ static void print_array(const std::vector<int> &nums, int count=INT_MAX){
 	printf("]\n");
 }
 
-static void print_matrix(vector<vector<int>> &matrix, string s="", string e=""){
+static void print_matrix(const vector<vector<int>> &matrix, string s="", string e=""){
+	int width = 2;
+	for(auto row : matrix){
+		for(auto e : row){
+			if(e != 0){
+				double f = log10(fabs(e)) + 2;
+				if(e < 0){
+					f += 1;
+				}
+				width = std::max(width, (int)f);
+			}
+		}
+	}
+	
 	if(!s.empty()){
 		printf("%s\n", s.c_str());
 	}
@@ -30,7 +43,7 @@ static void print_matrix(vector<vector<int>> &matrix, string s="", string e=""){
 			if(!s.empty()){
 				printf("%d", e);
 			}else{
-				printf("%2d", e);
+				printf("%*d", width, e);
 			}
 		}
 		if(!e.empty()){
