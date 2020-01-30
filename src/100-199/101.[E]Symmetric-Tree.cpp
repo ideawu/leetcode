@@ -93,17 +93,54 @@ bool isSymmetric2(TreeNode* root) {
 	}
 }
 
+/***********************************************************
+# 解题思路
+
+* 每次都将需要对比的两个节点加入队列中, 一次对比两个节点, 然后继续递归.
+***********************************************************/
+bool isSymmetric3(TreeNode* root) {
+	list<TreeNode*> q;
+
+	q.push_back(root);
+	q.push_back(root);
+	
+	while(!q.empty()){
+		TreeNode *n1 = q.front();
+		q.pop_front();
+		TreeNode *n2 = q.front();
+		q.pop_front();
+		
+		if(!n1 && !n2){
+			continue;
+		}
+		if(!n1 || !n2){
+			return false;
+		}
+		if(n1->val != n2->val){
+			return false;
+		}
+		
+		q.push_back(n1->left);
+		q.push_back(n2->right);
+		q.push_back(n1->right);
+		q.push_back(n2->left);
+	}
+	return true;
+}
+
 int main(int argc, char **argv){
 	TreeNode *root;
 	root = build_tree({1,2,2,3,4,4,3});
 	print_tree(root);
 	printf("%d\n", isSymmetric(root));
 	printf("%d\n", isSymmetric2(root));
+	printf("%d\n", isSymmetric3(root));
 
 	root = build_tree({1,2,2,0,3,0,3});
 	print_tree(root);
 	printf("%d\n", isSymmetric(root));
 	printf("%d\n", isSymmetric2(root));
+	printf("%d\n", isSymmetric3(root));
 
 	return 0;
 }
