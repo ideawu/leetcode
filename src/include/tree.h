@@ -11,14 +11,10 @@ struct TreeNode {
 };
 
 static int tree_depth(TreeNode *n){
-	int d = 1;
-	if(n->left){
-		d = max(d, 1 + tree_depth(n->left));
+	if(!n){
+		return 0;
 	}
-	if(n->right){
-		d = max(d, 1 + tree_depth(n->right));
-	}
-	return d;
+	return 1 + max(tree_depth(n->left), tree_depth(n->right));
 }
 
 void tree_nodes_at_level_helper(vector<TreeNode*> *ret, TreeNode *root, int l){
@@ -89,6 +85,9 @@ static TreeNode* build_tree(vector<int> ps){
 //   01
 //  /  \
 // 02  03
+// TODO: 采用二维画布的方式, 后序遍历, 画左子树, 画右子树, 然后画根节点.
+// 1. 直接在画布上作图, 最后 print 画布.
+// 2. 计算每一个块在画布上的坐标, 最后再 print.
 void print_tree(TreeNode *root){
 	int depth = tree_depth(root);
 	int cell_width = 2;
@@ -107,7 +106,7 @@ void print_tree(TreeNode *root){
 			}
 			TreeNode *node = nodes[j];
 			if(node == NULL){
-				printf("%*s", cell_width, "*");
+				printf("%*s", cell_width, " ");
 			}else{
 				printf("%0*d", cell_width, node->val);
 			}
@@ -131,9 +130,15 @@ void print_tree(TreeNode *root){
 					if(j > 0){
 						printf("%s", str_repeat(" ", spn*cell_width).c_str());
 					}
-					printf("%*s", cell_width, "/");
-					printf("%s", str_repeat(" ", (gap*2-1)*cell_width).c_str());
-					printf("%-*s", cell_width, "\\");
+					if(nodes[j] == NULL){
+						printf("%*s", cell_width, " ");
+						printf("%s", str_repeat(" ", (gap*2-1)*cell_width).c_str());
+						printf("%-*s", cell_width, " ");
+					}else{
+						printf("%*s", cell_width, "/");
+						printf("%s", str_repeat(" ", (gap*2-1)*cell_width).c_str());
+						printf("%-*s", cell_width, "\\");
+					}
 				}
 				printf("%s", str_repeat(" ", idn*cell_width).c_str());
 				printf("]\n");
