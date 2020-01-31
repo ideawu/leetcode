@@ -5,7 +5,6 @@
 
 struct TreeNode {
 	int val;
-	TreeNode *parent;
 	TreeNode *left;
 	TreeNode *right;
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
@@ -69,7 +68,6 @@ static TreeNode* build_tree(vector<int> ps){
 					printf("ERROR: NULL parent!\n");
 					break;
 				}
-				n->parent = p;
 				if(i % 2 == 0){
 					p->right = n;
 				}else{
