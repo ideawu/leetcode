@@ -62,17 +62,19 @@ static TreeNode* build_tree(vector<int> ps){
 		if(ps[i] > 0){
 			TreeNode *n = new TreeNode(ps[i]);
 			nodes.push_back(n);
-			int pid = (i-1)/2;
-			TreeNode *p = nodes[pid];
-			if(!p){
-				printf("ERROR: NULL parent!\n");
-				break;
-			}
-			n->parent = p;
-			if(i % 2 == 0){
-				p->right = n;
-			}else{
-				p->left = n;
+			if(i > 0){
+				int pid = (i-1)/2;
+				TreeNode *p = nodes[pid];
+				if(!p){
+					printf("ERROR: NULL parent!\n");
+					break;
+				}
+				n->parent = p;
+				if(i % 2 == 0){
+					p->right = n;
+				}else{
+					p->left = n;
+				}
 			}
 		}else{
 			nodes.push_back(NULL);
@@ -166,4 +168,5 @@ void print_tree(TreeNode *root){
 			}
 		}
 	}
+	printf("\n");
 }

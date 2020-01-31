@@ -17,7 +17,6 @@ void helper(TreeNode *root, TreeNode **tail){
 	if(!root){
 		return;
 	}
-	*tail = root;
 	TreeNode *l=root->left, *r=root->right;
 	if(l){
 		helper(l, tail);
@@ -25,6 +24,7 @@ void helper(TreeNode *root, TreeNode **tail){
 		root->right = l;
 		(*tail)->right = r;
 	}
+	*tail = root;
 	if(r){
 		helper(r, tail);
 	}
