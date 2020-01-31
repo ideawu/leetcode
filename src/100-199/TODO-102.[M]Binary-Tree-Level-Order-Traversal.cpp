@@ -64,6 +64,10 @@ vector<vector<int>> levelOrder2(TreeNode* root) {
 	return ret;
 }
 
+// TODO: 将遍历结果放到 vector 中, q 只用于模拟调用栈.
+vector<vector<int>> levelOrder3(TreeNode* root) {
+}
+
 int main(int argc, char **argv){
 	TreeNode *root;
 	root = build_tree({3,9,20,0,0,15,7});

@@ -48,6 +48,10 @@ vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
 	return ret;
 }
 
+// TODO: 将遍历结果放到 vector 中, q 只用于模拟调用栈.
+vector<vector<int>> zigzagLevelOrder2(TreeNode* root) {
+}
+
 int main(int argc, char **argv){
 	TreeNode *root = build_tree({3,9,20,0,0,15,7});
 	print_tree(root);
