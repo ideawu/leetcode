@@ -48,14 +48,56 @@ vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
 	return ret;
 }
 
-// TODO: 将遍历结果放到 vector 中, q 只用于模拟调用栈.
+// 将遍历结果放到 vector 中, q 只用于模拟调用栈.
 vector<vector<int>> zigzagLevelOrder2(TreeNode* root) {
+	vector<vector<int>> ret;
+	vector<int> row;
+    list<TreeNode*> q;
+	
+	q.push_back(root);
+	q.push_back(NULL);
+	bool ltr = true;
+	while(1){
+		TreeNode *n;
+		if(ltr){
+			n = q.front();
+			q.pop_front();
+		}else{
+			n = q.back();
+			q.pop_back();
+		}
+		if(n == NULL){
+			ret.push_back(row);
+			row.clear();
+			if(q.empty()){
+				break;
+			}
+			ltr = !ltr;
+			if(ltr){
+				q.push_back(NULL);
+			}else{
+				q.push_front(NULL);
+			}
+		}else{
+			row.push_back(n->val);
+			if(ltr){
+				if(n->left) q.push_back(n->left);
+				if(n->right) q.push_back(n->right);
+			}else{
+				if(n->right) q.push_front(n->right);
+				if(n->left) q.push_front(n->left);
+			}
+		}
+	}
+	
+	return ret;
 }
 
 int main(int argc, char **argv){
-	TreeNode *root = build_tree({3,9,20,0,0,15,7});
+	TreeNode *root = build_tree({3,9,20,1,2,15,7,3,4,5});
 	print_tree(root);
 	print_matrix(zigzagLevelOrder(root));
+	print_matrix(zigzagLevelOrder2(root));
 	return 0;
 }
 

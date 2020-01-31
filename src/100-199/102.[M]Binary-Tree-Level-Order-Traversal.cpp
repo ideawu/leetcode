@@ -64,8 +64,34 @@ vector<vector<int>> levelOrder2(TreeNode* root) {
 	return ret;
 }
 
-// TODO: 将遍历结果放到 vector 中, q 只用于模拟调用栈.
+// 将遍历结果放到 vector 中, q 只用于模拟调用栈.
 vector<vector<int>> levelOrder3(TreeNode* root) {
+	vector<vector<int>> ret;
+	vector<int> row;
+	list<TreeNode*> q;
+	
+	q.push_back(root);
+	q.push_back(NULL);
+	
+	while(1){
+		TreeNode *n = q.front();
+		q.pop_front();
+		if(n == NULL){
+			ret.push_back(row);
+			row.clear();
+			
+			if(q.empty()){
+				break;
+			}
+			q.push_back(NULL);
+		}else{
+			row.push_back(n->val);
+			if(n->left) q.push_back(n->left);
+			if(n->right) q.push_back(n->right);
+		}
+	}
+	
+	return ret;
 }
 
 int main(int argc, char **argv){
@@ -74,6 +100,7 @@ int main(int argc, char **argv){
 	print_tree(root);
 	print_matrix(levelOrder(root), "[", "]");
 	print_matrix(levelOrder2(root), "[", "]");
+	print_matrix(levelOrder3(root), "[", "]");
 	return 0;
 }
 
