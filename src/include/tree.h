@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <list>
 #include "util.h"
 
 struct TreeNode {
@@ -17,29 +18,41 @@ static int tree_depth(TreeNode *n){
 	return 1 + max(tree_depth(n->left), tree_depth(n->right));
 }
 
-void tree_nodes_at_level_helper(vector<TreeNode*> *ret, TreeNode *root, int l){
-	if(l < 0){
-		return;
-	}
-	// 如果递归到了这里, 说明同级有NULL节点
-	if(l == 0){
-		if(root){
-			ret->push_back(root);
-		}else{
-			ret->push_back(NULL);
-		}
-		return;
-	}
-	if(!root){
-		return;
-	}
-	tree_nodes_at_level_helper(ret, root->left, l-1);
-	tree_nodes_at_level_helper(ret, root->right, l-1);
-}
-
-vector<TreeNode*> tree_nodes_at_level(TreeNode *root, int l){
+vector<TreeNode*> tree_nodes_at_level(TreeNode *root, int l, bool withNull=false){
 	vector<TreeNode*> ret;
-	tree_nodes_at_level_helper(&ret, root, l);
+	list<TreeNode*> q;
+	
+	TreeNode *sep = new TreeNode(-1);
+	
+	q.push_back(sep);
+	q.push_back(root);
+	
+	while(l >= 0){
+		TreeNode *n = q.front();
+		q.pop_front();
+		if(n == sep){
+			if(q.empty()){
+				break;
+			}
+			if(l == 0){
+				ret.assign(q.begin(), q.end());
+				break;
+			}
+			l --;
+			q.push_back(sep);
+		}else{
+			if(n){
+				if(withNull || n->left) q.push_back(n->left);
+				if(withNull || n->right) q.push_back(n->right);
+			}else{
+				if(withNull){
+					q.push_back(NULL);
+					q.push_back(NULL);
+				}
+			}
+		}
+	}
+	
 	return ret;
 }
 
@@ -99,7 +112,7 @@ void print_tree(TreeNode *root){
 		
 		printf("[");
 		printf("%s", str_repeat(" ", indent*cell_width).c_str());
-		vector<TreeNode*> nodes = tree_nodes_at_level(root, level);
+		vector<TreeNode*> nodes = tree_nodes_at_level(root, level, true);
 		for(int j=0; j<nodes.size(); j++){
 			if(j > 0){
 				printf("%s", str_repeat(" ", span*cell_width).c_str());
@@ -115,6 +128,7 @@ void print_tree(TreeNode *root){
 		printf("]\n");
 		
 		if(level < max_level){
+			vector<TreeNode*> nodes2 = tree_nodes_at_level(root, level+1, true);
 			int next_span = pow(2, max_level - level) - 1;
 			int next_indent = pow(2, max_level - level - 1) - 1;
 			
@@ -130,13 +144,15 @@ void print_tree(TreeNode *root){
 					if(j > 0){
 						printf("%s", str_repeat(" ", spn*cell_width).c_str());
 					}
-					if(nodes[j] == NULL){
+					if(nodes[j] == NULL || nodes2[2*j] == NULL){
 						printf("%*s", cell_width, " ");
-						printf("%s", str_repeat(" ", (gap*2-1)*cell_width).c_str());
-						printf("%-*s", cell_width, " ");
 					}else{
 						printf("%*s", cell_width, "/");
-						printf("%s", str_repeat(" ", (gap*2-1)*cell_width).c_str());
+					}
+					printf("%s", str_repeat(" ", (gap*2-1)*cell_width).c_str());
+					if(nodes[j] == NULL || nodes2[2*j+1] == NULL){
+						printf("%*s", cell_width, " ");
+					}else{
 						printf("%-*s", cell_width, "\\");
 					}
 				}
