@@ -56,5 +56,7 @@ static void print_matrix(const vector<vector<int>> &matrix, string s="", string 
 	}
 	if(!e.empty()){
 		printf("%s\n", e.c_str());
+	}else{
+		printf("\n");
 	}
 }

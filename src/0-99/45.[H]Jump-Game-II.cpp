@@ -23,7 +23,7 @@ int jump(vector<int>& nums) {
 	return cost[nums.size()-1];
 }
 
-// 递归, DFS + 倒推
+// 递归, DFS + 回溯
 int jump2(vector<int>& nums, int s){
 	if(s == nums.size() - 1){
 		return 0;
