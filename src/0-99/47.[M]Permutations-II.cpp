@@ -9,7 +9,7 @@ using namespace std;
 /***********************************************************
 # 解题思路
 
-* 和 46. Permutations 类似, 唯一的区别是, 如果两个数相同, 就不处理了.
+* 和 46. Permutations 类似.
 ***********************************************************/
 void helper(vector<vector<int>> &ret, vector<int>& nums, int s, vector<int> &pre){
 	if(s == nums.size()){
@@ -18,6 +18,7 @@ void helper(vector<vector<int>> &ret, vector<int>& nums, int s, vector<int> &pre
 	}
 	for(int i=s; i<nums.size(); i++){
 		if(i > s && nums[i] == nums[s]) continue;
+		if(i > s && nums[i] == nums[i-1]) continue;
 		std::swap(nums[i], nums[s]);
 		pre.push_back(nums[s]);
 		helper(ret, nums, s+1, pre);
@@ -26,6 +27,7 @@ void helper(vector<vector<int>> &ret, vector<int>& nums, int s, vector<int> &pre
 	}
 }
 vector<vector<int>> permuteUnique(vector<int>& nums) {
+	std::sort(nums.begin(), nums.end());
     vector<vector<int>> ret;
 	vector<int> pre;
 	helper(ret, nums, 0, pre);
@@ -38,6 +40,27 @@ int main(int argc, char **argv){
 	print_matrix(permuteUnique(nums));
 	nums = {1,2,1};
 	print_matrix(permuteUnique(nums));
+	
+	nums = {3,2,1};
+	nums = {4,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2};
+    vector<vector<int>> ret;
+	ret = permuteUnique(nums);
+	printf("%d\n", (int)ret.size());
+	// print_matrix(permuteUnique(nums), "[", "]");
+	
+	std::sort(nums.begin(), nums.end());
+	int n = 0;
+	do{
+		auto it = std::find(ret.begin(), ret.end(), nums);
+		if(it == ret.end()){
+			printf("error!\n");
+			print_array(nums);
+			break;
+		}
+		n ++;
+	}while(std::next_permutation(nums.begin(), nums.end()));
+	printf("%d\n", n);
+	
 	return 0;
 }
 

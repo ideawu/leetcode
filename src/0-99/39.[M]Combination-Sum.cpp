@@ -45,6 +45,16 @@ int main(int argc, char **argv){
 	vector<int> candidates;
 	int target;
 	vector<vector<int>> ret;
+
+	candidates = {1,2,3};
+	target = 4;
+	ret = combinationSum(candidates, target);
+	print_matrix(ret);
+
+	// candidates = {4,1,2};
+	// target = 32;
+	// ret = combinationSum(candidates, target);
+	// print_matrix(ret);
 		
 	candidates = {2,3,6,7};
 	target = 7;

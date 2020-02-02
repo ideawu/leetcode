@@ -79,6 +79,12 @@ int main(int argc, char **argv){
 	nextPermutation(nums);
 	print_array(nums);
 	
+	nums = {1, 1, 2,2};
+	for(int i=0; i<10; i++){
+		print_array(nums);
+		nextPermutation(nums);
+	}
+	
 	return 0;
 }
 
