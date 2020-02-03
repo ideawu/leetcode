@@ -36,18 +36,12 @@ vector<int> rightSideView(TreeNode* root) {
 vector<int> rightSideView2(TreeNode* root) {
 	vector<int> ret;
 	list<TreeNode*> q;
-	q.push_back(NULL);
 	q.push_back(root);
-	while(1){
-		TreeNode *n = q.front();
-		q.pop_front();
-		if(n == NULL){
-			if(q.empty()){
-				break;
-			}
-			ret.push_back(q.back()->val);
-			q.push_back(NULL);
-		}else{
+	while(!q.empty()){
+		ret.push_back(q.back()->val);
+		for(int i=q.size(); i>0; i--){
+			TreeNode *n = q.front();
+			q.pop_front();
 			if(n->left) q.push_back(n->left);
 			if(n->right) q.push_back(n->right);
 		}

@@ -9,27 +9,11 @@ using namespace std;
 /***********************************************************
 # 解题思路
 
-* 递归
+* BFS 访问后再逆序结果.
+* 每一层之间用 NULL 分隔.
 ***********************************************************/
-void helper(vector<vector<int>> &ret, TreeNode *root, int depth){
-	if(!root){
-		return;
-	}
-	if(ret.size() <= depth){
-		ret.push_back({});
-	}
-	ret[depth].push_back(root->val);
-	helper(ret, root->left, depth+1);
-	helper(ret, root->right, depth+1);
-}
-vector<vector<int>> levelOrder(TreeNode* root) {
+vector<vector<int>> levelOrderBottom(TreeNode* root) {
     vector<vector<int>> ret;
-	helper(ret, root, 0);
-    return ret;
-}
-
-vector<vector<int>> levelOrder2(TreeNode* root) {
-	vector<vector<int>> ret;
 	list<TreeNode*> q;
 	q.push_back(root);
 	while(!q.empty()){
@@ -43,6 +27,7 @@ vector<vector<int>> levelOrder2(TreeNode* root) {
 		}
 		ret.push_back(row);
 	}
+	std::reverse(ret.begin(), ret.end());
 	return ret;
 }
 
@@ -50,13 +35,13 @@ int main(int argc, char **argv){
 	TreeNode *root;
 	root = build_tree({3,9,20,0,0,15,7});
 	print_tree(root);
-	print_matrix(levelOrder(root), "[", "]");
-	print_matrix(levelOrder2(root), "[", "]");
+	vector<vector<int>> ret = levelOrderBottom(root);
+	print_matrix(ret);
 	return 0;
 }
 
 /*
-Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
+Given a binary tree, return the bottom-up level order traversal of its nodes' values. (ie, from left to right, level by level from leaf to root).
 
 For example:
 Given binary tree [3,9,20,null,null,15,7],
@@ -65,10 +50,10 @@ Given binary tree [3,9,20,null,null,15,7],
   9  20
     /  \
    15   7
-return its level order traversal as:
+return its bottom-up level order traversal as:
 [
-  [3],
+  [15,7],
   [9,20],
-  [15,7]
+  [3]
 ]
 */

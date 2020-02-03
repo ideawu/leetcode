@@ -20,26 +20,15 @@ static int tree_depth(TreeNode *n){
 vector<TreeNode*> tree_nodes_at_level(TreeNode *root, int l, bool withNull=false){
 	vector<TreeNode*> ret;
 	list<TreeNode*> q;
-	
-	TreeNode *sep = new TreeNode(-1);
-	
-	q.push_back(sep);
 	q.push_back(root);
-	
-	while(l >= 0){
-		TreeNode *n = q.front();
-		q.pop_front();
-		if(n == sep){
-			if(q.empty()){
-				break;
-			}
-			if(l == 0){
-				ret.assign(q.begin(), q.end());
-				break;
-			}
-			l --;
-			q.push_back(sep);
-		}else{
+	while(!q.empty()){
+		if((l--) == 0){
+			ret.assign(q.begin(), q.end());
+			return ret;
+		}
+		for(int i=q.size(); i>0; i--){
+			TreeNode *n = q.front();
+			q.pop_front();
 			if(n){
 				if(withNull || n->left) q.push_back(n->left);
 				if(withNull || n->right) q.push_back(n->right);
@@ -51,7 +40,6 @@ vector<TreeNode*> tree_nodes_at_level(TreeNode *root, int l, bool withNull=false
 			}
 		}
 	}
-	
 	return ret;
 }
 
