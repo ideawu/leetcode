@@ -45,6 +45,10 @@ void permutation(int &ret, vector<int>& nums, int s){
 		std::swap(nums[s], nums[i]);
 	}
 }
+void permutation_count(vector<int>& nums){
+	// 有数学推导公式
+	// count = n! - (repeats1!*repeats2!...)
+}
 int combinationSum4(vector<int>& nums, int target) {
 	std::sort(nums.begin(), nums.end());
 	int count = 0;
