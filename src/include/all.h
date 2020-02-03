@@ -1,4 +1,5 @@
 #include "util.h"
+#include "log.h"
 #include "list.h"
 #include "tree.h"
 #include "array.h"

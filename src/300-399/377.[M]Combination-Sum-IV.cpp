@@ -40,11 +40,9 @@ void permutation(int &ret, vector<int>& nums, int s){
 	for(int i=s; i<nums.size(); i++){
 		if(i > s && nums[i] == nums[s]) continue;
 		if(i > s && nums[i] == nums[i-1]) continue;
-		std::swap(nums[i], nums[s]);
-		// pre.push_back(nums[s]);
+		std::swap(nums[s], nums[i]);
 		permutation(ret, nums, s+1);
-		// pre.pop_back();
-		std::swap(nums[i], nums[s]);
+		std::swap(nums[s], nums[i]);
 	}
 }
 int combinationSum4(vector<int>& nums, int target) {
@@ -58,10 +56,7 @@ int combinationSum4(vector<int>& nums, int target) {
 	
 	for(auto com : ret){
 		int c = 0;
-		// permutation(c, com, 0);
-		do{
-			c++;
-		}while(std::next_permutation(com.begin(), com.end()));
+		permutation(c, com, 0);
 		// print_matrix(perm);
 		count += c;
 	}
@@ -75,9 +70,9 @@ int main(int argc, char **argv){
 	printf("%d\n", combinationSum4(nums, 4));
 	// 超时 test case: [4,1,2] 32
 	nums = {4,1,2};
-	runtime();
+	LOG("");
 	printf("%d\n", combinationSum4(nums, 32)); // 39882198
-	runtime();
+	LOG("");
 	return 0;
 }
 
