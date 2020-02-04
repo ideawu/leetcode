@@ -10,8 +10,11 @@ using namespace std;
 # 解题思路
 
 * 图遍历.
+* 其实是一道求k个元素组合的题.
+* 解题的出发点是求子集(subsets).
 * 不用预先生成数组, 只需要传递 [s,e] 即可.
-* 优化点: 1, 如果剩余的元素数量小于k则不递归;
+* 优化点: 1, 如果剩余的元素数量小于k则不递归; TODO: 大 sum 快速判断
+* Space Complexity: O(n) 递归栈和 pre, 返回的结果不算占用.
 ***********************************************************/
 void helper(vector<vector<int>> &ret, int s, int e, int k, int n, vector<int> &pre){
 	if(k == 0){

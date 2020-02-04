@@ -17,6 +17,25 @@ static int tree_depth(TreeNode *n){
 	return 1 + max(tree_depth(n->left), tree_depth(n->right));
 }
 
+TreeNode* bst_find(TreeNode *root, int val){
+	if(!root) return NULL;
+	if(val == root->val) return root;
+	if(val < root->val){
+		return bst_find(root->left, val);
+	}else{
+		return bst_find(root->right, val);
+	}
+}
+
+TreeNode* tree_find(TreeNode *root, int val){
+	if(!root) return NULL;
+	if(val == root->val) return root;
+	TreeNode *n;
+	n = tree_find(root->left, val);
+	if(n) return n;
+	return tree_find(root->right, val);
+}
+
 vector<TreeNode*> tree_nodes_at_level(TreeNode *root, int l, bool withNull=false){
 	vector<TreeNode*> ret;
 	list<TreeNode*> q;
