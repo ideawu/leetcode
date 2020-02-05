@@ -29,6 +29,7 @@ int main(int argc, char **argv){
 	for(int i=1; i<=26*3; i++){
 		printf("%2d %s\n", i, convertToTitle(i).c_str());
 	}
+	printf("%2d %s\n", 701, convertToTitle(701).c_str());
 	return 0;
 }
 
