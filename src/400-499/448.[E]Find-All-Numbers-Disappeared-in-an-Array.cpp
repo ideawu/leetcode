@@ -10,12 +10,23 @@ using namespace std;
 # 解题思路
 
 * 这是一道数组归位的题.
-* 遍历一趟, 不断交换直到元素归位.
-* 如果交换目标相等, 丢弃当前元素 .
+* 遍历一趟, 不断交换错位的元素直到元素归位.
+* 如果交换目标相等, 丢弃当前元素.
 ***********************************************************/
 vector<int> findDisappearedNumbers(vector<int>& nums) {
 	vector<int> ret;
 	for(int i=0; i<nums.size(); i++){
+		// // 直观思维
+		// while(nums[i] != i+1){
+		// 	if(nums[i] == nums[nums[i]-1]){
+		// 		break;
+		// 	}
+		// 	std::swap(nums[i], nums[nums[i]-1]);
+		// }
+		// 逆向思维 
+		while(nums[i] != nums[nums[i]-1]){
+			std::swap(nums[i], nums[nums[i]-1]);
+		}
 	}
 	for(int i=0; i<nums.size(); i++){
 		if(nums[i] != i+1){
