@@ -69,3 +69,13 @@ static void print_list(ListNode *head){
 	}
 	printf("\n");
 }
+
+ListNode* build_rand_list(int len, int maxnum=50){
+	ListNode *ret = new ListNode(rand()%maxnum);
+	ListNode *f = ret;
+	for(int i=1; i<len; i++){
+		f->next = new ListNode(rand()%maxnum);
+		f = f->next;
+	}
+	return ret;
+}

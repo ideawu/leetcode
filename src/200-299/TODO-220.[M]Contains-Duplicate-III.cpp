@@ -6,16 +6,24 @@
 
 using namespace std;
 
-int main(int argc, char **argv){
-	return 0;
-}
-
 /***********************************************************
 # 解题思路
 
+* 注意时间复杂度.
 ***********************************************************/
 bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
-    
+	return false;
+}
+
+int main(int argc, char **argv){
+	vector<int> nums;
+	nums = {1,2,3,1};
+	printf("%d\n", containsNearbyAlmostDuplicate(nums, 3, 0));
+	nums = {1,0,1,1};
+	printf("%d\n", containsNearbyAlmostDuplicate(nums, 1, 2));
+	nums = {1,5,9,1,5,9};
+	printf("%d\n", containsNearbyAlmostDuplicate(nums, 2, 3));
+	return 0;
 }
 
 /*

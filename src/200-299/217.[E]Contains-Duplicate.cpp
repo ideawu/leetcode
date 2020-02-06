@@ -2,20 +2,34 @@
 #include <string>
 #include <vector>
 #include <list>
+#include <unordered_map>
 #include "../include/all.h"
 
 using namespace std;
-
-int main(int argc, char **argv){
-	return 0;
-}
 
 /***********************************************************
 # 解题思路
 
 ***********************************************************/
 bool containsDuplicate(vector<int>& nums) {
-    
+    unordered_map<int, int> cnt;
+	for(auto n : nums){
+		if(++cnt[n] == 2){
+			return true;
+		}
+	}
+	return false;
+}
+
+int main(int argc, char **argv){
+	vector<int> nums;
+	nums = {1,2,3,1};
+	printf("%d\n", containsDuplicate(nums));
+	nums = {1,2,3,4};
+	printf("%d\n", containsDuplicate(nums));
+	nums = {1,1,1,3,3,4,3,2,4,2};
+	printf("%d\n", containsDuplicate(nums));
+	return 0;
 }
 
 /*
