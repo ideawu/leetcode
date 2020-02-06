@@ -123,7 +123,7 @@ int main(int argc, char **argv){
 	ListNode *head = build_list("1->5->3->9->15->7->4->1->2");
 	
 	runtime();
-	for(int i=1; i<10000; i++){
+	for(int i=1; i<1000; i++){
 		srand(0);
 		head = build_rand_list(i);
 		cmp_cnt = visit_cnt = update_cnt = 0;
