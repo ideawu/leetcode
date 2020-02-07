@@ -25,6 +25,28 @@ int majorityElement(vector<int>& nums) {
     return m;
 }
 
+/***********************************************************
+# 解题思路
+
+* 采用相对计票算法(摩尔投票).
+***********************************************************/
+int majorityElement(vector<int>& nums) {
+	int ret = -1;
+	int cnt = 0;
+	for(auto n : nums){
+		if(cnt == 0){
+			ret = n;
+			cnt = 1;
+		}else if(ret == n){
+			cnt ++;
+		}else{
+			cnt --;
+		}
+	}
+	// 题目假设有半数, 所以不用判断 cnt
+	return ret;
+}
+
 int main(int argc, char **argv){
 	vector<int> nums;
 	nums = {3,2,3};
