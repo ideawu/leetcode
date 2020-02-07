@@ -16,6 +16,8 @@ using namespace std;
 	用中间值遍历一趟查找, 计算大于, 小于等于 2 种情况的计数.
 	这样就可以知道重复值所处的区间.
 	有点像桶排序?
+* 这道题还有一个 O(n) 的解法, 是快慢指针的应用.
+	http://bookshadow.com/weblog/2015/09/28/leetcode-find-duplicate-number/
 ***********************************************************/
 int findDuplicate(vector<int>& nums) {
     int s = 1, e = nums.size()-1;

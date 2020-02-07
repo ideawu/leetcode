@@ -14,6 +14,23 @@ using namespace std;
 * 那就申请深度个元素的数组.
 ***********************************************************/
 int minimumTotal(vector<vector<int>>& triangle) {
+	vector<int> nums(triangle.size());
+	int ret = triangle[0][0];
+	nums[0] = triangle[0][0];
+	for(int i=1; i<triangle.size(); i++){
+		int mx = INT_MAX;
+		int pp = INT_MAX/2; // assume triangle[][] < INT_MAX/2
+		for(int j=0; j<=i; j++){
+			int p = j==i? INT_MAX/2 : nums[j];
+			int v = triangle[i][j];
+			int m = min(v+pp, v+p);
+			pp = p;
+			nums[j] = m;
+			mx = min(mx, m);
+		}
+		ret = mx;
+	}
+	return ret;
 }
 
 int main(int argc, char **argv){

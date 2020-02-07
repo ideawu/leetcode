@@ -11,11 +11,19 @@ using namespace std;
 
 * Pascal's triangle 指 [row][i] = [row-1][i-1] + [row-1][row].
 * 预先生成 k+1 长度的数组.
-* 更新数组前, 保存数组当前值.
+* 更新数组前, 保存数组当前值. 注意生成最后一个值的边界条件.
 ***********************************************************/
 vector<int> getRow(int rowIndex) {
     vector<int> ret(rowIndex+1);
 	ret[0] = 1;
+	for(int i=1; i<=rowIndex; i++){
+		int pp = 0;
+		for(int j=0; j<=i; j++){
+			int p = j==i? 0 : ret[j];
+			ret[j] = pp + p;
+			pp = p;
+		}
+	}
 	return ret;
 }
 

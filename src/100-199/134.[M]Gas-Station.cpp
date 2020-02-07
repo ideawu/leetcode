@@ -9,13 +9,67 @@ using namespace std;
 /***********************************************************
 # 解题思路
 
-* 动态规划问题.
-* 从第 [0] 个出发, 判断是否可以.
-* 进出站时, 有两个参数: 最小剩余油量 left 和欠油量 need.
-* 最小剩余油量不能小于 0, "最小"是指当下还不知道实际剩余多少, 只能估算
-	下限, 也许剩得更多.
+* 简单想法是两趟相反方向遍历
+	正向判断从[0]出现行驶需要的最大欠油量 borrow.
+	反向遍历判断从任何一点出发, 行驶到末尾时的剩余油量 remain.
+* 显然, remain >= borrow 才行.
 ***********************************************************/
 int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+	int max_borrow = 0;
+	int borrow = 0;
+	for(int i=0; i<gas.size(); i++){
+		int g = gas[i];
+		int c = cost[i];
+		borrow -= g - c;
+		max_borrow = max(max_borrow, borrow);
+	}
+	int remain = 0;
+	for(int i=gas.size()-1; i>=0; i--){
+		int g = gas[i];
+		int c = cost[i];
+		remain += g - c;
+		if(remain >= max_borrow){
+			return i;
+		}
+	}
+	return -1;
+}
+
+/***********************************************************
+# 解题思路
+
+* 一趟遍历的方案.
+* 原理: 从头出发到末尾, 记录最终欠油量 borrow 和中间出现的最大欠油量
+	max_borrow, 以及最终剩余油量 remain.
+* 如果 remain 不小于 max_borrow, 说明可行.
+* 但问题是, 从哪个出发并不知道...
+* 从任何一个可出发点出发, 到某个点时耗光油, 那么从它中间其它可出发点出发,
+	会更快的耗光油. 所以, 在它的行驶范围内的出发点都不是正确的出发点. 
+* 又是逆向思维.
+***********************************************************/
+int canCompleteCircuit2(vector<int>& gas, vector<int>& cost) {
+	int ret = -1;
+	int max_borrow = 0;
+	int borrow = 0;
+	int remain = 0;
+	for(int i=0; i<gas.size(); i++){
+		int g = gas[i];
+		int c = cost[i];
+		borrow -= g - c;
+		if(remain == 0 && g-c >= 0){
+			ret = i;
+		}
+		remain += g - c;
+		if(remain < 0){
+			remain = 0;
+		}
+		max_borrow = max(max_borrow, borrow);
+	}
+	if(remain >= max_borrow){
+		return ret;
+	}else{
+		return -1;
+	}
 }
 
 int main(int argc, char **argv){
@@ -23,9 +77,11 @@ int main(int argc, char **argv){
 	gas = {1,2,3,4,5};
 	cost = {3,4,5,1,2};
 	printf("%d\n", canCompleteCircuit(gas, cost));
+	printf("%d\n", canCompleteCircuit2(gas, cost));
 	gas = {2,3,4};
 	cost = {3,4,3};
 	printf("%d\n", canCompleteCircuit(gas, cost));
+	printf("%d\n", canCompleteCircuit2(gas, cost));
 	return 0;
 }
 
