@@ -34,10 +34,11 @@ int lengthOfLongestSubstring(string s) {
 	return ret;
 }
 
-// TODO: 优化, 哈希表不存计数, 而是存坐标.
+// TODO: 优化, 哈希表不存计数, 而是存坐标. 记录每一个字符最后一次出现的坐标.
 int lengthOfLongestSubstring2(string s) {
 	int i = 0;
 	int ret = 0;
+    unordered_map<int, int> m;
 	for(int j=0; j<s.size(); j++){
 	}
 	return ret;

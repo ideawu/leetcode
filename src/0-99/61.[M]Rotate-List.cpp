@@ -71,6 +71,8 @@ ListNode* rotateRight2(ListNode* head, int k) {
 	return head;
 }
 
+// 第3种, 翻转全表, 然后翻转 k 个节点, 然后再翻转剩下的全部节点.
+
 int main(int argc, char **argv){
 	ListNode *head = build_list("1->2->3->4->5");
 	head = rotateRight2(head, 2);

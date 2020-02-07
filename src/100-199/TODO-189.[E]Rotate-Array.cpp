@@ -11,11 +11,6 @@ using namespace std;
 
 ***********************************************************/
 void rotate(vector<int>& nums, int k) {
-    k %= nums.size();
-	for(int i=0; i<k; i++){
-		swap(nums[i], nums[nums.size()-k+i]);
-	}
-	print_array(nums);
 }
 
 int main(int argc, char **argv){
