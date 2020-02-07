@@ -33,7 +33,7 @@ static ListNode* build_list(const string &str){
 	int s = 0;
 	int e;
 	for(int i=0; i<=str.size(); i++){
-		if(i == str.size() || (str[i] == '-' && str[i+1] == '>')){
+		if(i == str.size() || str[i] == ',' || (str[i] == '-' && str[i+1] == '>')){
 			e = i - 1;
 
 			char buf[32];
@@ -51,8 +51,10 @@ static ListNode* build_list(const string &str){
 				prev->next = node;
 			}
 			prev = node;
-
-			i += 1;
+			
+			if(str[i] == '-'){
+				i += 1;
+			}
 			s = i + 1;
 		}
 	}

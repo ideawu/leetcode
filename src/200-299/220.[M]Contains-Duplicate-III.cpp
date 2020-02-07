@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <list>
+#include <set>
 #include "../include/all.h"
 
 using namespace std;
@@ -9,9 +10,34 @@ using namespace std;
 /***********************************************************
 # 解题思路
 
-* 注意时间复杂度.
+* 首先, 肯定是一道滑动窗口题.
+* 注意时间复杂度. 这道题希望时间复杂度小于 O(k*n)
+* 题目翻译一下: abs(nums[i]-nums[j])<=t, abs(i-j)<=k
+* 用 set 充当窗口, 但还要一个变量 s 记录窗口左沿.
+* 当一个元素被加入窗口前, 判断窗口中的数是否满足 [n-t, n+t] 这个区间. 
+* 用 set 的有序性查找.
 ***********************************************************/
 bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
+	if(nums.empty()) return false;
+	set<int> wnd;
+	int s = 0;
+	wnd.insert(nums[0]);
+	for(int i=1; i<nums.size(); i++){
+		int n = nums[i];
+		int hi = n + t;
+		int lo = n - t;
+		
+		auto it = wnd.lower_bound(lo);
+		if(it != wnd.end() && *it <= hi){
+			return true;
+		}
+		
+		wnd.insert(nums[i]);
+		if(wnd.size() == k+1){
+			wnd.erase(nums[s]);
+			s ++;
+		}
+	}
 	return false;
 }
 
