@@ -1,3 +1,21 @@
+#include <stdio.h>
+#include <string>
+#include <vector>
+#include <list>
+#include "../include/all.h"
+
+using namespace std;
+
+int main(int argc, char **argv){
+	return 0;
+}
+
+/***********************************************************
+# 解题思路
+
+* 因为要求 O(n), 大概就是哈希(hashset, 桶, ...).
+* 因为没有排序, 所以不是滑动窗口.
+***********************************************************/
 int longestConsecutive(vector<int>& nums) {
     
 }

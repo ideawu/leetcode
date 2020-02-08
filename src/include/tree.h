@@ -62,10 +62,10 @@ vector<TreeNode*> tree_nodes_at_level(TreeNode *root, int l, bool withNull=false
 	return ret;
 }
 
-static TreeNode* build_tree(vector<int> ps){
+static TreeNode* build_tree(vector<int> ps, int nullval=0){
 	vector<TreeNode *> nodes;
 	for(int i=0; i<ps.size(); i++){
-		if(ps[i] != 0){
+		if(ps[i] != nullval){
 			TreeNode *n = new TreeNode(ps[i]);
 			nodes.push_back(n);
 			if(i > 0){
