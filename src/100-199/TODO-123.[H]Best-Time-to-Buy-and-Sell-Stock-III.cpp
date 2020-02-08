@@ -10,48 +10,59 @@ using namespace std;
 
 * 采用分而治之递归穷举的方法.
 * 在递归函数中传递交易次数上限.
-* 优化: 记录 close_list, 避免重复计算, 注意是否缓存与 mt 相关.
+* 优化: 记录 cache, 避免重复计算, 注意是否缓存与 mt 相关.
 ***********************************************************/
-int maxProfitHelper(vector<int>& prices, int s, int mt, vector<int> &close_list) {
+int helper(vector<int>& prices, int s, int mt, vector<int> &cache) {
+	if(mt == 0) return 0;
 	if(mt == 1){
-		if(close_list[s] != -1){
-			return close_list[s];
+		if(cache[s] != -1){
+			return cache[s];
 		}
 	}
 	int mp = 0;
-	for(int j=s+1; j<prices.size(); j++){
-		int p = prices[j] - prices[s];
-		if(p > 0){
-			if(mt > 1){
-				p += maxProfitHelper(prices, j+1, mt-1, close_list);
+	for(int i=s; i<prices.size()-1; i++){
+		for(int j=i+1; j<prices.size(); j++){
+			int p = prices[j] - prices[i];
+			if(p > 0){
+				p += helper(prices, j+1, mt-1, cache);
+				mp = max(mp, p);
 			}
-			mp = max(mp, p);
 		}
 	}
 	if(mt == 1){
-		close_list[s] = mp;
+		cache[s] = mp;
 	}
 	return mp;
 }
 
 int maxProfit(vector<int>& prices) {
-	vector<int> close_list(prices.size(), -1);
-    int mp = 0;
-	for(int i=0; i<prices.size(); i++){
-		int p = maxProfitHelper(prices, i, 2, close_list);
-		mp = max(mp, p);
-	}
-	return mp;
+	vector<int> cache(prices.size(), -1);
+	return helper(prices, 0, 2, cache);
+}
+
+/***********************************************************
+# 解题思路
+
+* 将序列按峰值拆分成两个区间, 两个区间有区间内的最大收益之和 sum.
+* 求划分方案使 sum 最大化.
+* 两趟遍历, 第一趟找出全序列 lmin, lmax;
+* 第二趟反向遍历找到右区间 rmin, rmax, 同时更新 lmin, lmax.
+***********************************************************/
+int maxProfit2(vector<int>& prices) {
+	return 0;
 }
 
 int main(int argc, char **argv){
 	vector<int> nums;
 	nums = {3,3,5,0,0,3,1,4};
 	printf("%d\n", maxProfit(nums));
+	printf("%d\n", maxProfit2(nums));
 	nums = {1,2,3,4,5};
 	printf("%d\n", maxProfit(nums));
+	printf("%d\n", maxProfit2(nums));
 	nums = {7,6,4,3,1};
 	printf("%d\n", maxProfit(nums));
+	printf("%d\n", maxProfit2(nums));
 	return 0;
 }
 

@@ -10,44 +10,71 @@ using namespace std;
 
 * 采用递归穷举的方法
 * 依次选定一个元素, 以该元素作为买点, 找到下一个卖点后, 递归剩下的.
-* 优化: 因为可能重复计算, 所以将确定的结果存到 close_list, 避免重复计算.
+* 优化: 因为可能重复计算, 所以将确定的结果存到 cache, 避免重复计算.
 ***********************************************************/
-int maxProfitHelper(vector<int>& prices, int s, vector<int> &close_list) {
-	if(close_list[s] != -1){
-		return close_list[s];
+int helper(vector<int>& prices, int s, vector<int> &cache) {
+	if(cache[s] != -1){
+		return cache[s];
 	}
 	
-	int mp = 0;
-	for(int j=s+1; j<prices.size(); j++){
-		int p = prices[j] - prices[s];
-		if(p > 0){
-			p += maxProfitHelper(prices, j+1, close_list);
-			mp = max(mp, p);
+	int ret = 0;
+	for(int i=s; i<prices.size()-1; i++){
+		for(int j=i+1; j<prices.size(); j++){
+			int p = prices[j] - prices[i];
+			if(p > 0){
+				p += helper(prices, j+1, cache);
+				ret = max(ret, p);
+			}
 		}
 	}
 	
-	close_list[s] = mp;
-	return mp;
+	cache[s] = ret;
+	return ret;
 }
 
 int maxProfit(vector<int>& prices) {
-	vector<int> close_list(prices.size(), -1);
-	int mp = 0;
-	for(int i=0; i<prices.size(); i++){
-		int p = maxProfitHelper(prices, i, close_list);
-		mp = max(mp, p);
+	vector<int> cache(prices.size(), -1);
+	return helper(prices, 0, cache);
+}
+
+/***********************************************************
+# 解题思路
+
+* 这道题有一个心智负担, 限制不能在同一时间买和卖. 但先卖后买是可以的.
+	是误导型条件.
+* 其实是对差值进行累积.
+* 找出所有的上升区间, 在区间开始时买, 结束时卖, 得到阶段性收益.
+***********************************************************/
+int maxProfit2(vector<int>& prices) {
+	if(prices.size() <= 1) return 0;
+	int ret = 0;
+	int pre = INT_MAX;
+	for(auto n : prices){
+		ret += max(0, n - pre);
+		pre = n;
 	}
-	return mp;
+	// int low = prices[0];
+	// for(int i=1; i<prices.size(); i++){
+	// 	low = min(low, n);
+	// 	if(i == prices.size() - 1 || (prices[i-1] <= prices[i] && prices[i] > prices[i+1])){
+	// 		ret += max(0, prices[i] - low);
+	// 		low = prices[i];
+	// 	}
+	// }
+	return ret;
 }
 
 int main(int argc, char **argv){
 	vector<int> nums;
 	nums = {7,1,5,3,6,4};
 	printf("%d\n", maxProfit(nums));
+	printf("%d\n", maxProfit2(nums));
 	nums = {1,2,3,4,5};
 	printf("%d\n", maxProfit(nums));
+	printf("%d\n", maxProfit2(nums));
 	nums = {7,6,4,3,1};
 	printf("%d\n", maxProfit(nums));
+	printf("%d\n", maxProfit2(nums));
 	return 0;
 }
 

@@ -10,6 +10,7 @@ using namespace std;
 
 * 采用穷举法(演进动态规划)
 * 依次选定每一个节点作为买点, 计算其后的节点作为卖点时的利润.
+* 时间复杂度是 O(n^2)
 ***********************************************************/
 int maxProfit(vector<int>& prices) {
     int p = 0;
@@ -21,12 +22,29 @@ int maxProfit(vector<int>& prices) {
 	return p;
 }
 
+/***********************************************************
+# 解题思路
+
+* 只需要一趟遍历, 只要记住之前的最低点即可.
+***********************************************************/
+int maxProfit2(vector<int>& prices) {
+	int ret = 0;
+	int low = INT_MAX;
+	for(auto n : prices){
+		low = min(low, n);
+		ret = max(ret, n - low);
+	}
+	return ret;
+}
+
 int main(int argc, char **argv){
 	vector<int> nums;
 	nums = {7,1,5,3,6,4};
 	printf("%d\n", maxProfit(nums));
+	printf("%d\n", maxProfit2(nums));
 	nums = {7,6,4,3,1};
 	printf("%d\n", maxProfit(nums));
+	printf("%d\n", maxProfit2(nums));
 	return 0;
 }
 
