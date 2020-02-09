@@ -10,7 +10,6 @@ using namespace std;
 # 解题思路
 
 * 扫描, 并修改输入数据.
-* num[i][j] = min(left, up) + 1 if (left && up)
 
 1 0 1 0 0
 1 0 1 1 1
@@ -25,21 +24,6 @@ using namespace std;
 * 这算动态规划?
 ***********************************************************/
 int maximalSquare(vector<vector<int>>& matrix) {
-	int w = 0;
-    int m = matrix.size();
-	int n = matrix[0].size();
-	for(int i=0; i<m; i++){
-		for(int j=0; j<n; j++){
-			if(!matrix[i][j]) continue;
-			int up = (i > 0)? matrix[i-1][j] : 0;
-			int left = (j > 0)? matrix[i][j-1] : 0;
-			if(up && left){
-				matrix[i][j] = min(up, left) + 1;
-				w = max(w, matrix[i][j]);
-			}
-		}
-	}
-	return w * w; // 返回面积
 }
 
 /***********************************************************
