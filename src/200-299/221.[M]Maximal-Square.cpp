@@ -10,7 +10,7 @@ using namespace std;
 # 解题思路
 
 * 扫描, 并修改输入数据.
-* num[i][j] = min(left, up) + 1 if (left|up)
+* num[i][j] = min(left, up) + 1 if (left && up)
 
 1 0 1 0 0
 1 0 1 1 1
@@ -33,8 +33,10 @@ int maximalSquare(vector<vector<int>>& matrix) {
 			if(!matrix[i][j]) continue;
 			int up = (i > 0)? matrix[i-1][j] : 0;
 			int left = (j > 0)? matrix[i][j-1] : 0;
-			matrix[i][j] = min(up, left) + 1;
-			w = max(w, matrix[i][j]);
+			if(up && left){
+				matrix[i][j] = min(up, left) + 1;
+				w = max(w, matrix[i][j]);
+			}
 		}
 	}
 	return w * w; // 返回面积
