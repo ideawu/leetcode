@@ -9,35 +9,33 @@ using namespace std;
 /***********************************************************
 # 解题思路
 
-* 扫描, 并修改输入数据.
-
-1 0 1 0 0
+1 0 1 0 1
 1 0 1 1 1
 1 1 1 1 1
 1 0 0 1 0
+
+* 每个点由: 左上, 左, 上 3 个点来决定.
 ***********************************************************/
 int maximalSquare(vector<vector<int>>& matrix) {
-}
-
-/***********************************************************
-# 解题思路
-
-***********************************************************/
-int maximalSquare2(vector<vector<int>>& matrix) {
-	int ret = 0;
+	int w = 0;
     int m = matrix.size();
 	int n = matrix[0].size();
+	vector<int> dp(n, 0);
+	int tl = 0;
 	for(int i=0; i<m; i++){
 		for(int j=0; j<n; j++){
 			if(matrix[i][j] == 0){
 				continue;
 			}
-			
+			int left = (j==0)? 0 : dp[j-1];
+			int top  = dp[j];
+			dp[j] = 1 + min(tl, min(left, top));
+			w = max(w, dp[j]);
+			tl = top;
 		}
 	}
-	return ret;
+	return w*w;
 }
-
 
 int main(int argc, char **argv){
 	vector<vector<int>> matrix;
@@ -49,8 +47,6 @@ int main(int argc, char **argv){
 	vector<vector<int>> m;
 	m = matrix;
 	printf("%d\n", maximalSquare(m));
-	m = matrix;
-	printf("%d\n", maximalSquare2(m));
 	
 	return 0;
 }
