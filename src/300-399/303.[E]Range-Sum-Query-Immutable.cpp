@@ -30,10 +30,6 @@ private:
 	vector<int> sum;
 };
 
-/**
- * Your NumArray object will be instantiated and called as such:
- */
-
 int main(int argc, char **argv){
 	vector<int> nums = {-2,0,3,-5,2,-1};
 	NumArray* obj = new NumArray(nums);
