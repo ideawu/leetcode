@@ -13,6 +13,8 @@ using namespace std;
 * 使用两个指针分别遍历两个链表, 到达尾部时, 换成另一个头节点继续遍历.
 ***********************************************************/
 ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+	if(!headA || !headB) return NULL;
+	
 	ListNode *n1, *n2;
 	n1 = headA;
 	n2 = headB;
@@ -41,6 +43,42 @@ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
 	}
 }
 
+/***********************************************************
+# 解题思路
+
+* 找出两个链表的长度, 以差值作为较长的链表的出发偏移.
+* 然后两个指针按同样的速度遍历链表, 若链表相交则指针会相遇.
+***********************************************************/
+int list_len(ListNode *h){
+	int ret = 0;
+	while(h){
+		h = h->next;
+		ret ++;
+	}
+	return ret;
+}
+ListNode* list_advance(ListNode *h, int step){
+	while(--step >= 0){
+		h = h->next;
+	}
+	return h;
+}
+ListNode *getIntersectionNode2(ListNode *headA, ListNode *headB) {
+	int s1 = list_len(headA);
+	int s2 = list_len(headB);
+	if(s1 > s2){
+		headA = list_advance(headA, s1 - s2);
+	}else{
+		headB = list_advance(headB, s2 - s1);
+	}
+	while(1){
+		if(!headA || !headB) return NULL;
+		if(headA == headB) return headA;
+		headA = headA->next;
+		headB = headB->next;
+	}
+}
+
 int main(int argc, char **argv){
 	ListNode *h1, *h2, *h3;
 	ListNode *c;
@@ -52,6 +90,8 @@ int main(int argc, char **argv){
 	list_tail(h2)->next = h3;
 	c = getIntersectionNode(h1, h2);
 	printf("%d\n", (c? c->val : -1));
+	c = getIntersectionNode2(h1, h2);
+	printf("%d\n", (c? c->val : -1));
 	
 	h1 = build_list("0->9->1");
 	h2 = build_list("3");
@@ -60,10 +100,14 @@ int main(int argc, char **argv){
 	list_tail(h2)->next = h3;
 	c = getIntersectionNode(h1, h2);
 	printf("%d\n", (c? c->val : -1));
+	c = getIntersectionNode2(h1, h2);
+	printf("%d\n", (c? c->val : -1));
 	
 	h1 = build_list("2->6->4");
 	h2 = build_list("1->5");
 	c = getIntersectionNode(h1, h2);
+	printf("%d\n", (c? c->val : -1));
+	c = getIntersectionNode2(h1, h2);
 	printf("%d\n", (c? c->val : -1));
 	
 	return 0;
