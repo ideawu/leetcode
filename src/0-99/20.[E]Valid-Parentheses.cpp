@@ -12,7 +12,7 @@ using namespace std;
 * 匹配的问题一般用 stack.
 ***********************************************************/
 bool isValid(string s) {
-    vector<char> vars;
+	vector<char> vars;
 	unordered_map<char,char> pairs = {
 		{')', '('},
 		{']', '['},

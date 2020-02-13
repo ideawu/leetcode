@@ -14,13 +14,13 @@ using namespace std;
 ***********************************************************/
 int maxSubArrayBrute(vector<int>& nums) {
 	int tm = -INT_MAX;
-    for(int i=0; i<nums.size(); i++){
+	for(int i=0; i<nums.size(); i++){
 		int s = nums[i];
 		int m = s;
-    	for(int j=i+1; j<nums.size(); j++){
+		for(int j=i+1; j<nums.size(); j++){
 			s += nums[j];
-    		m = max(m, s);
-    	}
+			m = max(m, s);
+		}
 		tm = max(tm, m);
     }
 	return tm;

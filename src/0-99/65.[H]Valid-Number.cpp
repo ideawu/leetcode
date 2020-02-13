@@ -13,7 +13,7 @@ using namespace std;
 bool isNumber(string s) {
 	int sign = 0;
 	int dec = 0;
-    int status = 'star';
+	int status = 'star';
 	for(int i=0; i<=s.size(); i++){
 		char ch = (i<s.size())? s[i] : ' ';
 		if(status == 'star'){

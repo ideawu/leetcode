@@ -16,9 +16,9 @@ using namespace std;
 int numTrees(int n) {
 	if(n == 0 || n == 1) return 1;
 	int ret = 0;
-    for(int i=1; i<=n; i++){
-    	ret += numTrees(i-1) * numTrees(n-i);
-    }
+	for(int i=1; i<=n; i++){
+		ret += numTrees(i-1) * numTrees(n-i);
+	}
 	return ret;
 }
 
@@ -33,9 +33,9 @@ int helper2(vector<int> &close_list, int n){
 	}
 	
 	int ret = 0;
-    for(int i=1; i<=n; i++){
-    	ret += helper2(close_list, i-1) * helper2(close_list, n-i);
-    }
+	for(int i=1; i<=n; i++){
+		ret += helper2(close_list, i-1) * helper2(close_list, n-i);
+	}
 	
 	close_list[n] = ret;
 	return ret;

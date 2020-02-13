@@ -28,7 +28,7 @@ void helper(vector<vector<int>> &ret, vector<int> &nums, int s, vector<int> &pre
 }
 vector<vector<int>> subsetsWithDup(vector<int>& nums) {
 	std::sort(nums.begin(), nums.end());
-    vector<vector<int>> ret;
+	vector<vector<int>> ret;
 	vector<int> pre;
 	ret.push_back(pre);
 	helper(ret, nums, 0, pre);

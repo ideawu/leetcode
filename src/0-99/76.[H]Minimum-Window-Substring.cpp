@@ -12,7 +12,7 @@ struct Range{
 };
 
 struct Match{
-    vector<int> _map;
+	vector<int> _map;
 	Range range;
 	int count;
 	Match(){
@@ -35,7 +35,7 @@ struct Match{
 
 // assume ASCII
 string minWindow(string s, string t) {
-    vector<int> testmap(128, 0);
+	vector<int> testmap(128, 0);
 	for(auto &c : t){
 		testmap[c] = 1;
 	}

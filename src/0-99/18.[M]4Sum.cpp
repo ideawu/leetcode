@@ -29,7 +29,7 @@ void helper(vector<vector<int>> &ret, vector<int> &nums, int s, int target, int 
 vector<vector<int>> fourSum(vector<int>& nums, int target) {
 	std::sort(nums.begin(), nums.end());
 	vector<vector<int>> ret;
-    vector<int> pre;
+	vector<int> pre;
 	helper(ret, nums, 0, target, 4, pre);
 	return ret;
 }

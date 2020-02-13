@@ -22,7 +22,7 @@ bool helper(TreeNode *root, int lo, int hi){
 	return helper(root->left, lo, root->val) && helper(root->right, root->val, hi);
 }
 bool isValidBST(TreeNode* root) {
-    return helper(root, INT_MIN, INT_MAX);
+	return helper(root, INT_MIN, INT_MAX);
 }
 
 /***********************************************************
@@ -52,7 +52,7 @@ bool helper2(TreeNode *root, int *v){
 }
 bool isValidBST2(TreeNode* root) {
 	int v = INT_MIN;
-    return helper2(root, &v);
+	return helper2(root, &v);
 }
 
 int main(int argc, char **argv){

@@ -13,7 +13,7 @@ using namespace std;
 ***********************************************************/
 void rotate(vector<vector<int>>& matrix) {
 	int m = matrix.size();
-    std::reverse(matrix.begin(), matrix.end());
+	std::reverse(matrix.begin(), matrix.end());
 	for(int i=0; i<m; i++){
 		for(int j=i+1; j<m; j++){
 			std::swap(matrix[i][j], matrix[j][i]);

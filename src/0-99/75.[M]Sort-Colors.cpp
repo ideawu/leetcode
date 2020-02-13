@@ -18,7 +18,7 @@ using namespace std;
 * 停止条件: mi > hi(注意!)
 ***********************************************************/
 void sortColors(vector<int>& nums) {
-    int lo = 0;
+	int lo = 0;
 	int mi = 0;
 	int hi = nums.size()-1;
 	while(mi <= hi){

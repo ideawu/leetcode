@@ -26,7 +26,7 @@ void helper(vector<vector<int>> &ret, int n, int s, int k, vector<int> &pre){
 	}
 }
 vector<vector<int>> combine(int n, int k) {
-    vector<vector<int>> ret;
+	vector<vector<int>> ret;
 	vector<int> pre;
 	helper(ret, n, 1, k, pre);
 	return ret;
@@ -47,8 +47,8 @@ vector<vector<int>> combine(int n, int k) {
 		if (p[i] > n) --i;
 		else if (i == k - 1) result.push_back(p);
 		else {
-		    ++i;
-		    p[i] = p[i - 1];
+			++i;
+			p[i] = p[i - 1];
 		}
 	}
 	return result;

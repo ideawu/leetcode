@@ -34,7 +34,7 @@ bool helper(string s, int si, string p, int pi){
 	return false;
 }
 bool isMatch(string s, string p) {
-    return helper(s, 0, p, 0);
+	return helper(s, 0, p, 0);
 }
 
 int main(int argc, char **argv){

@@ -12,7 +12,7 @@ using namespace std;
 * 这道题的优化点在于二分法.
 ***********************************************************/
 double myPow(double x, int n) {
-    if(n == 0) return 1;
+	if(n == 0) return 1;
 	if(n == 1) return x;
 	if(n < 0) return 1.0/myPow(x, -n);
 	double r = myPow(x, n/2);

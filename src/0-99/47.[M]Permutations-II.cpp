@@ -35,7 +35,7 @@ void helper(vector<vector<int>> &ret, vector<int>& nums, int s, vector<int> &pre
 }
 vector<vector<int>> permuteUnique(vector<int>& nums) {
 	std::sort(nums.begin(), nums.end());
-    vector<vector<int>> ret;
+	vector<vector<int>> ret;
 	vector<int> pre;
 	helper(ret, nums, 0, pre);
 	return ret;
@@ -50,7 +50,7 @@ int main(int argc, char **argv){
 	
 	nums = {3,2,1};
 	nums = {4,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2};
-    vector<vector<int>> ret;
+	vector<vector<int>> ret;
 	ret = permuteUnique(nums);
 	printf("%d\n", (int)ret.size());
 	// print_matrix(permuteUnique(nums), "[", "]");

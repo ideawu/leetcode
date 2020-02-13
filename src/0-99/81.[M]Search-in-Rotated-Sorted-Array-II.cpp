@@ -37,7 +37,7 @@ bool searchHelper(vector<int>& nums, int s, int e, int t) {
 }
 
 bool search(vector<int>& nums, int t) {
-    return searchHelper(nums, 0, nums.size()-1, t);
+	return searchHelper(nums, 0, nums.size()-1, t);
 }
 
 int main(int argc, char **argv){

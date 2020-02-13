@@ -12,7 +12,7 @@ using namespace std;
 * 用3个指针遍历. f 指向下一个可放置元素的坐标.
 ***********************************************************/
 int removeDuplicates(vector<int>& nums) {
-    int k = 2;
+	int k = 2;
 	int p = 0;
 	int f = 0;
 	for(int n=p+1; n<=nums.size(); n++){
@@ -33,7 +33,7 @@ int removeDuplicates(vector<int>& nums) {
 * f 指向已放置好的元素的坐标.
 ***********************************************************/
 int removeDuplicates2(vector<int>& nums) {
-    int k = 2;
+	int k = 2;
 	int f = k-1;
 	for(int n=f+1; n<nums.size(); n++){
 		if(nums[f-k+1] != nums[n]){
@@ -91,6 +91,6 @@ int len = removeDuplicates(nums);
 // any modification to nums in your function would be known by the caller.
 // using the length returned by your function, it prints the first len elements.
 for (int i = 0; i < len; i++) {
-    print(nums[i]);
+	print(nums[i]);
 }
 */

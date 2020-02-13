@@ -30,7 +30,7 @@ void helper(vector<string> &ret, int lp, int rp, string &pre){
 	}
 }
 vector<string> generateParenthesis(int n) {
-    vector<string> ret;
+	vector<string> ret;
 	string pre;
 	helper(ret, n, n, pre);
 	return ret;

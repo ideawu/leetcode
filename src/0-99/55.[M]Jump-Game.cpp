@@ -16,9 +16,9 @@ using namespace std;
 ***********************************************************/
 bool canJump(vector<int>& nums) {
 	int p = 0;
-    for(int i=0; i<nums.size()-1; i++){
-    	p = max(nums[i], p-1);
-    }
+	for(int i=0; i<nums.size()-1; i++){
+		p = max(nums[i], p-1);
+	}
 	return p > 0;
 }
 

@@ -12,7 +12,7 @@ using namespace std;
 * 用牛顿迭代法 x=(x+n/x)/2, 关键是停止条件.
 ***********************************************************/
 int mySqrt(int n) {
-    int x = n;
+	int x = n;
 	int p = x;
 	while(1){
 		p = x;

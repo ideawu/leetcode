@@ -29,7 +29,7 @@ void helper(vector<vector<int>> &ret, vector<int>& nums, int s, vector<int> &pre
 	}
 }
 vector<vector<int>> permute(vector<int>& nums) {
-    vector<vector<int>> ret;
+	vector<vector<int>> ret;
 	vector<int> pre;
 	helper(ret, nums, 0, pre);
 	return ret;

@@ -13,7 +13,7 @@ using namespace std;
 	根据大小关系决定前向搜索或者后向搜索, 找到另一个可正确交换的元素.
 ***********************************************************/
 void recoverTree(TreeNode* root) {
-    list<TreeNode*> q;
+	list<TreeNode*> q;
 	vector<TreeNode*> nodes;
 	
 	q.push_front(root);
@@ -76,7 +76,7 @@ bool helper(TreeNode *node, TreeNode **prev, TreeNode **found){
 	return helper(node->right, prev, found);
 }
 void recoverTree2(TreeNode* root) {
-    TreeNode *prev = new TreeNode(INT_MIN);
+	TreeNode *prev = new TreeNode(INT_MIN);
 	TreeNode *found=NULL;
 	helper(root, &prev, &found);
 	if(found){

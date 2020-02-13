@@ -104,16 +104,16 @@ int main(int argc, char **argv){
 
 	printf("\n");
 	matrix.clear();
-    matrix.push_back({0,1,2,0});
-    matrix.push_back({3,4,5,2});
-    matrix.push_back({1,3,1,5});
+	matrix.push_back({0,1,2,0});
+	matrix.push_back({3,4,5,2});
+	matrix.push_back({1,3,1,5});
 	setZeroes(matrix);
 
 	printf("\n");
 	matrix.clear();
-    matrix.push_back({0,1,2,1});
-    matrix.push_back({3,4,5,0});
-    matrix.push_back({1,3,1,5});
+	matrix.push_back({0,1,2,1});
+	matrix.push_back({3,4,5,0});
+	matrix.push_back({1,3,1,5});
 	setZeroes(matrix);
 	
 	return 0;

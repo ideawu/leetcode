@@ -13,7 +13,7 @@ using namespace std;
 * 滑动窗口, 如果头部增加的字符有重复, 尝试减少尾部字符直到不重复.
 ***********************************************************/
 int lengthOfLongestSubstring(string s) {
-    vector<int> cs(128, 0);
+	vector<int> cs(128, 0);
 	int len = 0;
 	int ret = 0;
 	for(int i=0; i<s.size(); i++){
@@ -38,7 +38,7 @@ int lengthOfLongestSubstring(string s) {
 int lengthOfLongestSubstring2(string s) {
 	int i = 0;
 	int ret = 0;
-    unordered_map<int, int> m;
+	unordered_map<int, int> m;
 	for(int j=0; j<s.size(); j++){
 	}
 	return ret;

@@ -13,7 +13,7 @@ using namespace std;
 * 考察 string API 熟练度.
 ***********************************************************/
 string addBinary(string a, string b) {
-    int i = a.size()-1;
+	int i = a.size()-1;
 	int j = b.size()-1;
 	int m = max(i,j);
 	string ret(m+1, '0');

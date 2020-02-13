@@ -17,7 +17,7 @@ bool cmp(vector<int> &a, vector<int> &b){
 }
 
 vector<vector<int>> merge(vector<vector<int>>& intervals) {
-    std::sort(intervals.begin(), intervals.end(), cmp);
+	std::sort(intervals.begin(), intervals.end(), cmp);
 	
 	vector<vector<int>> ret;
 	ret.push_back(intervals[0]);

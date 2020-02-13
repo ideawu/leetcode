@@ -94,7 +94,7 @@ int main(int argc, char **argv){
 	fullJustify(words, maxWidth);
 	
 	words = {"Science","is","what","we","understand","well","enough","to","explain",
-         "to","a","computer.","Art","is","everything","else","we","do"};
+	     "to","a","computer.","Art","is","everything","else","we","do"};
 	maxWidth = 20;
  	fullJustify(words, maxWidth);
 	

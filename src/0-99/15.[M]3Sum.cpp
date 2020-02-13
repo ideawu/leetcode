@@ -30,7 +30,7 @@ void helper(vector<vector<int>> &ret, vector<int>& nums, int s, int target, vect
 	}
 }
 vector<vector<int>> threeSum(vector<int>& nums) {
-    std::sort(nums.begin(), nums.end());
+	std::sort(nums.begin(), nums.end());
 	
 	vector<vector<int>> ret;
 	vector<int> pre;

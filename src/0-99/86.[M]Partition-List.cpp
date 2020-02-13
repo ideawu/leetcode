@@ -30,7 +30,7 @@ ListNode* partition2(ListNode* head, int x) {
 		if(node->val < x){
 			prev->next = node->next; // remove node
 			node->next = flag->next; // insert 1/2
-			flag->next = node;       // insert 2/2
+			flag->next = node;	   // insert 2/2
 
 			flag = flag->next;
 			// prev = prev->next; // next has been removed, so prev stays

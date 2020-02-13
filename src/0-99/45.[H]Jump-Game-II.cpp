@@ -13,7 +13,7 @@ using namespace std;
 * BFS(Breadth First Search) + 演进
 ***********************************************************/
 int jump(vector<int>& nums) {
-    vector<int> cost(nums.size(), INT_MAX);
+	vector<int> cost(nums.size(), INT_MAX);
 	cost[0] = 0;
 	for(int i=0; i<nums.size(); i++){
 		for(int j=1; j<=nums[i] && (i+j)<nums.size(); j++){

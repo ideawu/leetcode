@@ -32,7 +32,7 @@ int helper(string &ret, string num, char ch, int shift){
 }
 
 string multiply(string num1, string num2) {
-    string ret(num1.size() + num2.size() + 1, '0');
+	string ret(num1.size() + num2.size() + 1, '0');
 	int s = 0;
 	int n = 0;
 	for(int j=num2.size()-1; j>=0; j--){

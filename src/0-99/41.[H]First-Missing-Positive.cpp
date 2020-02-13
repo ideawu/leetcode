@@ -17,7 +17,7 @@ using namespace std;
 * 这道题就变成单指针归位的问题, 1-n 的数据不断两两交换直到归位, 其它数据丢弃.
 ***********************************************************/
 int firstMissingPositive(vector<int>& nums) {
-    for(int i=0; i<nums.size(); i++){
+	for(int i=0; i<nums.size(); i++){
 		while(nums[i] != i+1){
 			if(nums[i] <= 0 || nums[i] > nums.size()){
 				nums[i] = INT_MAX;
@@ -26,7 +26,7 @@ int firstMissingPositive(vector<int>& nums) {
 			std::swap(nums[i], nums[nums[i]-1]);
 		}
     }
-    for(int i=0; i<nums.size(); i++){
+	for(int i=0; i<nums.size(); i++){
 		if(nums[i] == INT_MAX){
 			return i+1;
 		}

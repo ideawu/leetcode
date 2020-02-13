@@ -13,7 +13,7 @@ using namespace std;
 * 则弹出 stack 一个元素. 
 ***********************************************************/
 string simplifyPath(string path) {
-    int s = 0;
+	int s = 0;
 	int e = 0;
 	vector<string> ps;
 	for(int i=0; i<=path.size(); i++){

@@ -41,7 +41,7 @@ void combinationSumHelper(vector<vector<int>> &ret, vector<int> &prev, vector<in
 }
 
 vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
-    vector<vector<int>> ret;
+	vector<vector<int>> ret;
 	vector<int> prev;
 	std::sort(candidates.begin(), candidates.end());
 	combinationSumHelper(ret, prev, candidates, 0, target);
@@ -54,21 +54,21 @@ vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
 int c3 = 0;
 void helper(vector<int>& num, int target, int start, vector<int>& out, vector<vector<int>>& res) {
 	c3 ++;
-    if (target < 0) return;
-    if (target == 0) { res.push_back(out); return; }
-    for (int i = start; i < num.size(); ++i) {
-        if (i > start && num[i] == num[i - 1]) continue;
-        out.push_back(num[i]);
-        helper(num, target - num[i], i + 1, out, res);
-        out.pop_back();
-    }
+	if (target < 0) return;
+	if (target == 0) { res.push_back(out); return; }
+	for (int i = start; i < num.size(); ++i) {
+	    if (i > start && num[i] == num[i - 1]) continue;
+	    out.push_back(num[i]);
+	    helper(num, target - num[i], i + 1, out, res);
+	    out.pop_back();
+	}
 }
 vector<vector<int>> combinationSum3(vector<int>& num, int target) {
-    vector<vector<int>> res;
-    vector<int> out;
-    sort(num.begin(), num.end());
-    helper(num, target, 0, out, res);
-    return res;
+	vector<vector<int>> res;
+	vector<int> out;
+	sort(num.begin(), num.end());
+	helper(num, target, 0, out, res);
+	return res;
 }
 
 int main(int argc, char **argv){

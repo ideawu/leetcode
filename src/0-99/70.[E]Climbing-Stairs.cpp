@@ -13,7 +13,7 @@ int climbStairs(int n) {
 	if(n == 1){
 		return 1;
 	}
-    int p[2] = {1, 2};
+	int p[2] = {1, 2};
 	for(int i=3; i<=n; i++){
 		int c = p[0] + p[1];
 		p[0] = p[1];
