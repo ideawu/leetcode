@@ -12,8 +12,6 @@ using namespace std;
 * 见"解题要点-龟兔赛跑.md"
 ***********************************************************/
 ListNode* detectCycle(ListNode *head) {
-	if(!head) return NULL;
-	
 	ListNode *f = head;
 	ListNode *s = head;
 	while(f && f->next){
