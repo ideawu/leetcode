@@ -165,9 +165,9 @@ void print_spiral3(int m , int n){
 
 // To execute C++, please define "int main()"
 int main() {
-		print_spiral3(2, 3);
-		print_spiral3(4, 1);
-		print_spiral3(4, 6);
+	print_spiral3(2, 3);
+	print_spiral3(4, 1);
+	print_spiral3(4, 6);
 	return 0;
 }
 
@@ -191,4 +191,4 @@ Output:
 2
 3
 4
- */
+*/
