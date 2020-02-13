@@ -18,7 +18,7 @@ using namespace std;
 ***********************************************************/
 int maximalSquare(vector<vector<int>>& matrix) {
 	int w = 0;
-    int m = matrix.size();
+	int m = matrix.size();
 	int n = matrix[0].size();
 	vector<int> dp(n, 0);
 	int tl = 0;

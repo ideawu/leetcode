@@ -30,7 +30,7 @@ void helper(vector<vector<int>> &ret, int s, int e, int k, int n, vector<int> &p
 	}
 }
 vector<vector<int>> combinationSum3(int k, int n) {
-    vector<vector<int>> ret;
+	vector<vector<int>> ret;
 	vector<int> pre;
 	helper(ret, 1, 9, k, n, pre);
 	return ret;

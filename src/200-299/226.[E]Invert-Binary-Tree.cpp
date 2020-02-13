@@ -12,9 +12,9 @@ using namespace std;
 * 这道题的来历让人唏嘘.
 ***********************************************************/
 TreeNode* invertTree(TreeNode* root) {
-    if(!root){
-    	return NULL;
-    }
+	if(!root){
+		return NULL;
+	}
 	std::swap(root->left, root->right);
 	invertTree(root->left);
 	invertTree(root->right);

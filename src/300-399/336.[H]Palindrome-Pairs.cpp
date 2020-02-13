@@ -48,9 +48,9 @@ bool isPalindrome(const string &a, const string &b){
 }
 vector<vector<int>> palindromePairs(vector<string>& words) {
 	vector<vector<int>> ret;
-    for(int i=0; i<words.size()-1; i++){
-    	for(int j=i+1; j<words.size(); j++){
-    		string &a = words[i];
+	for(int i=0; i<words.size()-1; i++){
+		for(int j=i+1; j<words.size(); j++){
+			string &a = words[i];
 			string &b = words[j];
 			if(isPalindrome(a, b)){
 				ret.push_back({i, j});
@@ -58,8 +58,8 @@ vector<vector<int>> palindromePairs(vector<string>& words) {
 			if(isPalindrome(b, a)){
 				ret.push_back({j, i});
 			}
-    	}
-    }
+		}
+	}
 	return ret;
 }
 

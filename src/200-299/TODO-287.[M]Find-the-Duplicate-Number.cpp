@@ -20,7 +20,7 @@ using namespace std;
 	http://bookshadow.com/weblog/2015/09/28/leetcode-find-duplicate-number/
 ***********************************************************/
 int findDuplicate(vector<int>& nums) {
-    int s = 1, e = nums.size()-1;
+	int s = 1, e = nums.size()-1;
 	while(1){
 		if(s == e) return s;
 		

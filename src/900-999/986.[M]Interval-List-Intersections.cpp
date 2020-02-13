@@ -24,7 +24,7 @@ vector<int> intersect(vector<int> &r1, vector<int> &r2){
 }
 vector<vector<int>> intervalIntersection(vector<vector<int>>& A, vector<vector<int>>& B) {
 	vector<vector<int>> ret;
-    auto it1 = A.begin();
+	auto it1 = A.begin();
 	auto it2 = B.begin();
 	while(1){
 		if(it1 == A.end() || it2 == B.end()){

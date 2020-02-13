@@ -27,11 +27,11 @@ vector<int> countBits(int num) {
 
 // i & (i - 1) 清除最低位的 1 之后, 比当前值小(已计算过), 就可以回溯了.
 vector<int> countBits2(int num) {
-    vector<int> res(num + 1, 0);
-    for (int i = 1; i <= num; ++i) {
-        res[i] = res[i & (i - 1)] + 1;
-    }
-    return res;
+	vector<int> res(num + 1, 0);
+	for (int i = 1; i <= num; ++i) {
+		res[i] = res[i & (i - 1)] + 1;
+	}
+	return res;
 }
 
 int main(int argc, char **argv){

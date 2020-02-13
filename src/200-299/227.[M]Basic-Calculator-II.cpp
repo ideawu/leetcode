@@ -63,7 +63,7 @@ void token_end(){
 }
 
 int calculate(string s) {
-    vars.clear();
+	vars.clear();
 	ops.clear();
 	for(int i=0; i<s.size(); i++){
 		char ch = s[i];

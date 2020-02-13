@@ -11,10 +11,11 @@ using namespace std;
 
 * 采用中序遍历.
 * 记录当前节点的 level
-* 找到 p 后, found=p, found_level=min(found_level, level)
-* 继续直到找到 q
+* 找到 p 或 q 后, f=found=p, found_level=min(found_level, level)
+* 找到任意一个之后, 遍历的每一个节点都可能是 LCA.
+* 继续直到找到 q 或 p
 ***********************************************************/
-// 返回是否停止.
+// 返回是否停止. fl=found_level f=found_node
 bool helper(TreeNode *n, int level, TreeNode *p, TreeNode *q, TreeNode **f, int *fl){
 	if(!n) return false;
 	if(helper(n->left, level+1, p, q, f, fl)){
@@ -42,7 +43,7 @@ bool helper(TreeNode *n, int level, TreeNode *p, TreeNode *q, TreeNode **f, int 
 TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
 	TreeNode *f = NULL;
 	int fl = INT_MAX;
-    helper(root, 0, p, q, &f, &fl);
+	helper(root, 0, p, q, &f, &fl);
 	return f;
 }
 

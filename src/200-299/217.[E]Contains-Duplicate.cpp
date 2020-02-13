@@ -12,7 +12,7 @@ using namespace std;
 
 ***********************************************************/
 bool containsDuplicate(vector<int>& nums) {
-    unordered_map<int, int> cnt;
+	unordered_map<int, int> cnt;
 	for(auto n : nums){
 		if(++cnt[n] == 2){
 			return true;

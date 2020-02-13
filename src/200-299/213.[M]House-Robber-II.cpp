@@ -15,7 +15,7 @@ using namespace std;
 int rob(vector<int>& nums) {
 	if(nums.size() == 1) return nums[0];
 	int ret = 0;
-    int a = 0, b = 0;
+	int a = 0, b = 0;
 	bool fa = true, fb = false; // 是否包含第1个
 	for(int i=0; i<nums.size(); i++){
 		int n = nums[i];

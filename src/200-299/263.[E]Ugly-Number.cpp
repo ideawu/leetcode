@@ -13,7 +13,7 @@ using namespace std;
 ***********************************************************/
 bool isUgly(int num) {
 	if(num <= 0) return false;
-    if(num <= 5) return true;
+	if(num <= 5) return true;
 	if(num % 2 == 0 && isUgly(num/2)) return true;
 	if(num % 3 == 0 && isUgly(num/3)) return true;
 	if(num % 5 == 0 && isUgly(num/5)) return true;
@@ -21,11 +21,11 @@ bool isUgly(int num) {
 }
 
 bool isUgly2(int num) {
-    if (num <= 0) return false;
-    while (num % 2 == 0) num /= 2;
-    while (num % 3 == 0) num /= 3;
-    while (num % 5 == 0) num /= 5;
-    return num == 1;
+	if (num <= 0) return false;
+	while (num % 2 == 0) num /= 2;
+	while (num % 3 == 0) num /= 3;
+	while (num % 5 == 0) num /= 5;
+	return num == 1;
 }
 
 int main(int argc, char **argv){

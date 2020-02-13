@@ -13,7 +13,7 @@ using namespace std;
 * 当出现重复时, 将错位的一个标记为 -1, 避免它被再次交换到别的位置.
 ***********************************************************/
 vector<int> findDuplicates(vector<int>& nums) {
-    vector<int> ret;
+	vector<int> ret;
 	for(int i=0; i<nums.size(); i++){
 		while(1){
 			if(nums[i] == -1){
@@ -41,7 +41,7 @@ vector<int> findDuplicates(vector<int>& nums) {
 * 如果目标位元素是正数, 将其转为负数.
 ***********************************************************/
 vector<int> findDuplicates2(vector<int>& nums) {
-    vector<int> ret;
+	vector<int> ret;
 	for(int i=0; i<nums.size(); i++){
 		if(nums[i] == i + i){
 			continue;

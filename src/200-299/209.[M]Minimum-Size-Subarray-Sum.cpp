@@ -16,7 +16,7 @@ using namespace std;
 int minSubArrayLen(int s, vector<int>& nums) {
 	if(nums.empty()) return 0;
 	int ret = INT_MAX;
-    int lo = 0;
+	int lo = 0;
 	int hi = 1;
 	int sum = nums[0];
 	while(1){

@@ -15,8 +15,8 @@ using namespace std;
 ***********************************************************/
 class NumMatrix {
 public:
-    NumMatrix(vector<vector<int>>& matrix) {
-        int m = matrix.size();
+	NumMatrix(vector<vector<int>>& matrix) {
+		int m = matrix.size();
 		int n = matrix[0].size();
 		cache.resize(m+1, vector<int>(n+1, 0));
 		for(int i=1; i<=m; i++){
@@ -25,13 +25,13 @@ public:
 				cache[i][j] = matrix[i-1][j-1] + un;
 			}
 		}
-    }
-    
-    int sumRegion(int row1, int col1, int row2, int col2) {
-        int total = cache[row2+1][col2+1];
+	}
+	
+	int sumRegion(int row1, int col1, int row2, int col2) {
+		int total = cache[row2+1][col2+1];
 		int un = cache[row1][col2+1] + cache[row2+1][col1] - cache[row1][col1];
 		return total - un;
-    }
+	}
 private:
 	vector<vector<int>> cache;
 };
@@ -44,10 +44,10 @@ int main(int argc, char **argv){
 	matrix.push_back({4, 1, 0, 1, 7});
 	matrix.push_back({1, 0, 3, 0, 5});
 
-    NumMatrix* obj = new NumMatrix(matrix);
-    printf("%d\n", obj->sumRegion(2, 1, 4, 3));
-    printf("%d\n", obj->sumRegion(1, 1, 2, 2));
-    printf("%d\n", obj->sumRegion(1, 2, 2, 4));
+	NumMatrix* obj = new NumMatrix(matrix);
+	printf("%d\n", obj->sumRegion(2, 1, 4, 3));
+	printf("%d\n", obj->sumRegion(1, 1, 2, 2));
+	printf("%d\n", obj->sumRegion(1, 2, 2, 4));
 	return 0;
 }
 

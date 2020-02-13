@@ -30,7 +30,7 @@ int helper(TreeNode *n, int *k){
 	return helper(n->right, k);
 }
 int kthSmallest(TreeNode* root, int k) {
-    return helper(root, &k);
+	return helper(root, &k);
 }
 
 int main(int argc, char **argv){

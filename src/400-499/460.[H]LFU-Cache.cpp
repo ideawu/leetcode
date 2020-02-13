@@ -26,9 +26,9 @@ struct Item{
 
 class LFUCache {
 public:
-    LFUCache(int capacity) {
-        _cap = capacity;
-    }
+	LFUCache(int capacity) {
+		_cap = capacity;
+	}
 	
 	void visit(list<Item>::iterator lit){
 		lit->f ++;
@@ -49,9 +49,9 @@ public:
 			_map[item.key] = lit;
 		}		
 	}
-    
-    int get(int key) {
-        auto it = _map.find(key);
+	
+	int get(int key) {
+		auto it = _map.find(key);
 		if(it == _map.end()){
 			printf("get %d = %d\n", key, -1);
 			return -1;
@@ -62,12 +62,12 @@ public:
 		visit(lit);
 		printf("get %d = %d\n", item.key, item.val);
 		return item.val;
-    }
-    
-    void put(int key, int value) {
+	}
+	
+	void put(int key, int value) {
 		printf("put %d = %d\n", key, value);
 		list<Item>::iterator lit;
-        auto it = _map.find(key);
+		auto it = _map.find(key);
 		if(it != _map.end()){
 			lit = it->second;
 			lit->val = value;
@@ -86,7 +86,7 @@ public:
 			_map[item.key] = lit;
 		}
 		visit(lit);
-    }
+	}
 private:
 	int _cap;
 	list<Item> _list;
