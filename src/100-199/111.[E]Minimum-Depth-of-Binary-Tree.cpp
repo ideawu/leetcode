@@ -12,7 +12,7 @@ using namespace std;
 * 和求 maxDepth 类似, 就是递归穷举.
 ***********************************************************/
 int minDepth(TreeNode* root) {
-    if(!root) return 0;
+	if(!root) return 0;
 	return 1 + min(minDepth(root->left), minDepth(root->right));
 }
 

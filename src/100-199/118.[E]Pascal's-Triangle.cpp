@@ -12,7 +12,7 @@ using namespace std;
 * num[r][c] = num[r-1][c-1] + num[r-1][c];
 ***********************************************************/
 vector<vector<int>> generate(int numRows) {
-    vector<vector<int>> ret;
+	vector<vector<int>> ret;
 	ret.push_back({1});
 	for(int i=1; i<numRows; i++){
 		vector<int> row;

@@ -13,9 +13,9 @@ using namespace std;
 * 就是考察遍历树的两种方式.
 ***********************************************************/
 bool isSameTree(TreeNode* p, TreeNode* q) {
-    if(!p && !q){
-    	return true;
-    }
+	if(!p && !q){
+		return true;
+	}
 	if(!p || !q){
 		return false;
 	}

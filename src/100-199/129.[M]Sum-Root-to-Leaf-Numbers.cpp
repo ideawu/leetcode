@@ -22,7 +22,7 @@ void helper(TreeNode *n, int pre, int *total){
 }
 int sumNumbers(TreeNode* root) {
 	if(!root) return 0;
-    int total = 0;
+	int total = 0;
 	int pre = 0;
 	helper(root, pre, &total);
 	return total;

@@ -13,7 +13,7 @@ using namespace std;
 * 时间复杂度是 O(n^2)
 ***********************************************************/
 int maxProfit(vector<int>& prices) {
-    int p = 0;
+	int p = 0;
 	for(int i=0; i<prices.size(); i++){
 		for(int j=i+1; j<prices.size(); j++){
 			p = max(p, prices[j]-prices[i]);

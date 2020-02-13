@@ -23,7 +23,7 @@ TreeNode* helper(vector<int> &po, int ps, int pe, vector<int> &io, int is, int i
 	return root;
 }
 TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
-    return helper(postorder, 0, postorder.size()-1, inorder, 0, inorder.size()-1);
+	return helper(postorder, 0, postorder.size()-1, inorder, 0, inorder.size()-1);
 }
 
 int main(int argc, char **argv){

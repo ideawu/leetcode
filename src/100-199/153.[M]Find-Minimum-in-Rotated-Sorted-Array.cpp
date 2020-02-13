@@ -22,7 +22,7 @@ int helper(vector<int> &nums, int s, int e){
 	}
 }
 int findMin(vector<int>& nums) {
-    return helper(nums, 0, nums.size()-1);
+	return helper(nums, 0, nums.size()-1);
 }
 
 int main(int argc, char **argv){

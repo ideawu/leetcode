@@ -57,10 +57,10 @@ void helper(vector<int>& num, int target, int start, vector<int>& out, vector<ve
 	if (target < 0) return;
 	if (target == 0) { res.push_back(out); return; }
 	for (int i = start; i < num.size(); ++i) {
-	    if (i > start && num[i] == num[i - 1]) continue;
-	    out.push_back(num[i]);
-	    helper(num, target - num[i], i + 1, out, res);
-	    out.pop_back();
+		if (i > start && num[i] == num[i - 1]) continue;
+		out.push_back(num[i]);
+		helper(num, target - num[i], i + 1, out, res);
+		out.pop_back();
 	}
 }
 vector<vector<int>> combinationSum3(vector<int>& num, int target) {

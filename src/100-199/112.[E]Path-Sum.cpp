@@ -12,7 +12,7 @@ using namespace std;
 * 树的DFS遍历.
 ***********************************************************/
 bool hasPathSum(TreeNode* root, int sum) {
-    if(!root) return sum == 0;
+	if(!root) return sum == 0;
 	sum -= root->val;
 	return hasPathSum(root->left, sum) || hasPathSum(root->right, sum);
 }

@@ -31,7 +31,7 @@ void helper(TreeNode *root, TreeNode **tail){
 }
 void flatten(TreeNode* root) {
 	TreeNode *t;
-    helper(root, &t);
+	helper(root, &t);
 }
 
 int main(int argc, char **argv){

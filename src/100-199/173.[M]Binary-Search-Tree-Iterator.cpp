@@ -15,25 +15,25 @@ using namespace std;
 ***********************************************************/
 class BSTIterator {
 public:
-    BSTIterator(TreeNode* root) {
-        q.push_back(root);
-    }
+	BSTIterator(TreeNode* root) {
+		q.push_back(root);
+	}
     
     /** @return the next smallest number */
-    int next() {
-        TreeNode *n = q.front();
+	int next() {
+		TreeNode *n = q.front();
 		q.pop_front();
 		if(n->left) q.push_back(n->left);
 		if(n->right) q.push_back(n->right);
 		printf("%d\n", n->val);
 		return n->val;
-    }
+	}
     
     /** @return whether we have a next smallest number */
-    bool hasNext() {
+	bool hasNext() {
 		printf("%s\n", (q.empty()? "false" : "true"));
-        return !q.empty();
-    }
+		return !q.empty();
+	}
 private:
 	list<TreeNode*> q;
 };

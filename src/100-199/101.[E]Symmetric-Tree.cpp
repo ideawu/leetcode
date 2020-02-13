@@ -23,7 +23,7 @@ bool helper(TreeNode *left, TreeNode *right){
 	return helper(left->left, right->right) && helper(left->right, right->left);
 }
 bool isSymmetric(TreeNode* root) {
-    return helper(root->left, root->right);
+	return helper(root->left, root->right);
 }
 
 /***********************************************************

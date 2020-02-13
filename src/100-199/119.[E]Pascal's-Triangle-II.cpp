@@ -14,7 +14,7 @@ using namespace std;
 * 更新数组前, 保存数组当前值. 注意生成最后一个值的边界条件.
 ***********************************************************/
 vector<int> getRow(int rowIndex) {
-    vector<int> ret(rowIndex+1);
+	vector<int> ret(rowIndex+1);
 	ret[0] = 1;
 	for(int i=1; i<=rowIndex; i++){
 		int pp = 0;

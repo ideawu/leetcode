@@ -15,12 +15,12 @@ using namespace std;
 ***********************************************************/
 class LRUCache {
 public:
-    LRUCache(int capacity) {
-        this->_capacity = capacity;
-    }
+	LRUCache(int capacity) {
+		this->_capacity = capacity;
+	}
     
-    int get(int key) {
-        auto it = _map.find(key);
+	int get(int key) {
+		auto it = _map.find(key);
 		if(it == _map.end()){
 			return -1;
 		}
@@ -32,8 +32,8 @@ public:
 		return item.val;
     }
     
-    void put(int key, int value) {
-        auto it = _map.find(key);
+	void put(int key, int value) {
+		auto it = _map.find(key);
 		if(it != _map.end()){
 			auto lit = it->second;
 			Item &item = *lit;
@@ -67,13 +67,13 @@ int main(int argc, char **argv){
 	LRUCache cache(2);
 	cache.put(1, 1);
 	cache.put(2, 2);
-	printf("%d\n", cache.get(1));       // returns 1
-	cache.put(3, 3);    // evicts key 2
-	printf("%d\n", cache.get(2));       // returns -1 (not found)
-	cache.put(4, 4);    // evicts key 1
-	printf("%d\n", cache.get(1));       // returns -1 (not found)
-	printf("%d\n", cache.get(3));       // returns 3
-	printf("%d\n", cache.get(4));       // returns 4
+	printf("%d\n", cache.get(1));	   // returns 1
+	cache.put(3, 3);	// evicts key 2
+	printf("%d\n", cache.get(2));	   // returns -1 (not found)
+	cache.put(4, 4);	// evicts key 1
+	printf("%d\n", cache.get(1));	   // returns -1 (not found)
+	printf("%d\n", cache.get(3));	   // returns 3
+	printf("%d\n", cache.get(4));	   // returns 4
 
 	return 0;
 }

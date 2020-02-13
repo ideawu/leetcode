@@ -13,7 +13,7 @@ using namespace std;
 * 清除最低位的 1 以外的 1: n & ~(n-1)
 ***********************************************************/
 int hammingWeight(uint32_t n) {
-    int ret = 0;
+	int ret = 0;
 	while(n > 0){
 		n &= (n-1);
 		ret ++;

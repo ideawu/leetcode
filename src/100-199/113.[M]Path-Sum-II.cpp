@@ -13,7 +13,7 @@ using namespace std;
 * 注意边界条件, 如果左右子节点都为 NULL 时, 不遍历右节点.
 ***********************************************************/
 void helper(vector<vector<int>> &ret, TreeNode* root, int sum, vector<int> &pre) {
-    if(!root){
+	if(!root){
 		if(sum == 0){
 			ret.push_back(pre);
 		}
@@ -32,7 +32,7 @@ void helper(vector<vector<int>> &ret, TreeNode* root, int sum, vector<int> &pre)
 	}
 }
 vector<vector<int>> pathSum(TreeNode* root, int sum) {
-    vector<vector<int>> ret;
+	vector<vector<int>> ret;
 	vector<int> pre;
 	helper(ret, root, sum, pre);
 	return ret;

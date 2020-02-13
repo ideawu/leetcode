@@ -15,8 +15,8 @@ using namespace std;
 ***********************************************************/
 vector<int> twoSum(vector<int>& nums, int target) {
 	vector<int> ret(2);
-    for(int i=0; i<nums.size(); i++){
-    	if(i > 0 && nums[i] == nums[i-1]) continue;
+	for(int i=0; i<nums.size(); i++){
+		if(i > 0 && nums[i] == nums[i-1]) continue;
 		
 		// upper_bound(t)
 		int t = target - nums[i];
@@ -43,8 +43,8 @@ vector<int> twoSum(vector<int>& nums, int target) {
 vector<int> twoSum2(vector<int>& nums, int target) {
 	vector<int> ret(2);
 	unordered_map<int,int> vars;
-    for(int i=0; i<nums.size(); i++){
-    	if(i > 0 && nums[i] == nums[i-1]) continue;
+	for(int i=0; i<nums.size(); i++){
+		if(i > 0 && nums[i] == nums[i-1]) continue;
 		int t = target - nums[i];
 		if(vars.count(t) > 0){
 			ret[0] = i + 1;

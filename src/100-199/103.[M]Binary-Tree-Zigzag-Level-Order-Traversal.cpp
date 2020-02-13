@@ -15,7 +15,7 @@ using namespace std;
 ***********************************************************/
 vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
 	vector<vector<int>> ret;
-    list<TreeNode*> q;
+	list<TreeNode*> q;
 	bool ltr = true;
 	q.push_back(root);
 	while(!q.empty()){

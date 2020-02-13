@@ -14,7 +14,7 @@ using namespace std;
 * 所以, 求余和清除最低位操作前, 要将操作数减1后再操作
 ***********************************************************/
 string convertToTitle(int n) {
-    string ret;
+	string ret;
 	do{
 		n = n - 1;
 		int c = n % 26;

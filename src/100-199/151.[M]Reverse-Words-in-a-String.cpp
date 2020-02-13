@@ -19,7 +19,7 @@ using namespace std;
 string reverseWords(string s) {
 	string ret;
 	int en = s.size()-1;
-    for(int i=s.size()-1; i>=-1; i--){
+	for(int i=s.size()-1; i>=-1; i--){
 		if(i == -1 || isspace(s[i])){
 			if(en >= 0 && !isspace(s[en])){
 				if(!ret.empty()){
