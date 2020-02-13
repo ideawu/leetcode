@@ -13,7 +13,7 @@ using namespace std;
 * 记录当前节点的 level
 * 找到 p 或 q 后, f=found=p, found_level=min(found_level, level)
 * 找到任意一个之后, 遍历的每一个节点都可能是 LCA.
-* 继续直到找到 q 或 p
+* 继续直到找到 q 或 p, 如果到了根节点还未找到第2个, 则根节点是LCA.
 ***********************************************************/
 // 返回是否停止. fl=found_level f=found_node
 bool helper(TreeNode *n, int level, TreeNode *p, TreeNode *q, TreeNode **f, int *fl){
