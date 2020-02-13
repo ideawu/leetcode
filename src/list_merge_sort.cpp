@@ -12,17 +12,12 @@ int update_cnt;
 
 void list_split(ListNode *head, ListNode **h1, ListNode **h2){
 	ListNode *f, *s;
+	f = head->next; // 和环检测不一样, 出发点不同.
 	s = head;
-	f = head->next;
-	while(f){
-		f = f->next;
-		visit_cnt ++;
-		if(f){
-			visit_cnt += 2;
-			
-			f = f->next;
-			s = s->next;
-		}
+	while(f && f->next){
+		f = f->next->next;
+		s = s->next;
+		visit_cnt += 2;
 	}
 	*h1 = head;
 	*h2 = s->next;
