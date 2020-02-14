@@ -9,18 +9,24 @@ using namespace std;
 /***********************************************************
 # 解题思路
 
+* 借用链表旋转的思路.
+* 取模之后, 看末尾有 k 几个元素被旋转到了左边, 然后翻转 k, 再翻转 n-k.
 ***********************************************************/
 void rotate(vector<int>& nums, int k) {
+	k = k % nums.size();
+	std::reverse(nums.begin(), nums.end());
+	std::reverse(nums.begin(), nums.begin() + k);
+	std::reverse(nums.begin() + k, nums.end());
 }
 
 int main(int argc, char **argv){
 	vector<int> nums = {1,2,3,4,5,6,7};
 	// print_array(nums);
-	for(int i=1; i<7; i++){
+	for(int i=1; i<12; i++){
 		vector<int> s = nums;
 		rotate(s, i);
+		print_array(s);
 	}
-	// print_array(nums);
 	return 0;
 }
 
