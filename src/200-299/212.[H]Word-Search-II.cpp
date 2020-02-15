@@ -15,7 +15,6 @@ using namespace std;
 * 对输入排序之后, 可以在遍历 matrix 时决定选哪个单词进行查找.
 * 用 set 来存储输入单词, 既可以排序, 也可以在找到之后删除.
 * 用 do{}while(0) 惯用法, 可以简化代码结构.
-* 真正做下来, 这道题 Hard 的点在于工程性会复杂一些.
 ***********************************************************/
 bool helper(vector<vector<char>>& board, int i, int j, const string &word, int s){
 	int m = board.size();
@@ -73,6 +72,86 @@ vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
 	return ret;
 }
 
+/***********************************************************
+# 解题思路
+
+* 字典树 Trie-Tree
+***********************************************************/
+struct TrieNode{
+	bool end;
+	TrieNode *subs[128];
+	TrieNode(){
+		end = false;
+		memset(subs, 0, sizeof(subs));
+	}
+	void add(string &word, int s){
+		if(s == word.size()){
+			end = true;
+			return;
+		}
+		char c = word[s];
+		if(!subs[c]){
+			subs[c] = new TrieNode();
+		}
+		subs[c]->add(word, s+1);
+	}
+	// 不需要
+	bool find(string &word, int s){
+		if(s == word.size()) return end;
+		char c = word[s];
+		if(!subs[c]){
+			return false;
+		}
+		return subs[c]->find(word, s+1);
+	}
+	TrieNode* next(char ch){
+		return subs[ch];
+	}
+};
+void helper(vector<vector<char>>& board, int i, int j, TrieNode *trie, string &path, set<string> &res){
+	int m = board.size();
+	int n = board[0].size();
+	if(i < 0 || i >= m || j < 0 || j >= n) return;
+	char ch = board[i][j];
+	if(ch == '\0') return;
+
+	board[i][j] = '\0';
+	trie = trie->next(ch);
+	if(trie){
+		path.push_back(ch);
+		
+		if(trie->end){
+			res.insert(path);
+		}
+		helper(board, i-1, j, trie, path, res);
+		helper(board, i+1, j, trie, path, res);
+		helper(board, i, j-1, trie, path, res);
+		helper(board, i, j+1, trie, path, res);
+		
+		path.pop_back();
+	}
+	board[i][j] = ch;
+}
+vector<string> findWords2(vector<vector<char>>& board, vector<string>& words) {
+	TrieNode *root = new TrieNode();
+	for(auto w : words){
+		root->add(w, 0);
+	}
+	
+	set<string> res;
+	string path;
+	int m = board.size();
+	int n = board[0].size();
+	for(int i=0; i<m; i++){
+		for(int j=0; j<n; j++){
+			helper(board, i, j, root, path, res);
+		}
+	}
+	
+	vector<string> ret(res.begin(), res.end());
+	return ret;
+}
+
 int main(int argc, char **argv){
 	vector<vector<char>> board;
 	board = {
@@ -82,7 +161,7 @@ int main(int argc, char **argv){
 	  {'i','f','l','v'}
 	};
 	vector<string> words = {"oath","pea","eat","ea", "rain"};
-	vector<string> ret = findWords(board, words);
+	vector<string> ret = findWords2(board, words);
 	for(auto w : ret){
 		printf("%s\n", w.c_str());
 	}
