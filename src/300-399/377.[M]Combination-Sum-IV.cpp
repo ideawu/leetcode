@@ -68,15 +68,28 @@ int combinationSum4(vector<int>& nums, int target) {
 	return count;
 }
 
+// 用动态规划
+int combinationSum4_2(vector<int>& nums, int target) {
+	vector<int> dp(target+1, 0);
+	dp[0] = 1;
+	for(int i=1; i<=target; i++){
+		for(auto n : nums){
+			int k = i - n;
+			if(k >= 0){
+				dp[i] += dp[k];
+			}
+		}
+	}
+	return dp[target];
+}
+
 int main(int argc, char **argv){
 	vector<int> nums;
 	nums = {1,2,3};
 	printf("%d\n", combinationSum4(nums, 4));
-	// 超时 test case: [4,1,2] 32
+	// 超时 test case: [4,1,2] 32 = 39882198
 	nums = {4,1,2};
-	LOG("");
-	printf("%d\n", combinationSum4(nums, 32)); // 39882198
-	LOG("");
+	printf("%d\n", combinationSum4_2(nums, 32)); // 39882198
 	return 0;
 }
 
