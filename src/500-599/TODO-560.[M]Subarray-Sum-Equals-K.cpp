@@ -40,9 +40,54 @@ int subarraySum(vector<int>& nums, int k) {
 # 解题思路
 
 * 优化空间: 遇到上升沿或者下降沿(连续的正数或负数)进行聚合, 可以跳过某些节点.
+* 复杂度分析: 一趟遍历进行分组. 穷举时, 内循环有 1/2 的机率跳过.
 ***********************************************************/
+struct Group {
+	int cnt = 0; // 后面连续还有多少个同符号(或0)的数
+	int sum = 0;
+};
+
 int subarraySum2(vector<int>& nums, int k) {
-	return 0;
+	vector<Group> gs;
+	int ret = 0;
+	
+	Group g;
+	for(int i=0; i<nums.size(); i++){
+		if(i == nums.size() || i > 0 && nums[i] * nums[i-1] < 0){
+			int s = i - g.cnt;
+			int e = i - 1;
+			while(g.cnt > 0){
+				gs[s] = g;
+				g.cnt --;
+				g.sum -= nums[e];
+				s ++;
+				e --;
+			}
+		}
+		if(i < nums.size()){
+			g.cnt ++;
+			g.sum += nums[i];
+		}
+	}
+	
+	for(int i=0; i<nums.size(); i++){
+		int sum = 0;
+		for(int j=i; j<nums.size(); j++){
+			Group &g = gs[j];
+			if(sum > k && sum + g.sum > k || sum < k && sum + g.sum < k
+					|| sum == k && g.sum != 0)
+			{
+				sum += g.sum;
+				j += g.cnt - 1;
+				continue;
+			}
+			sum += nums[i];
+			if(sum == k){
+				ret ++;
+			}
+		}
+	}
+	return ret;
 }
 
 int main(int argc, char **argv){
