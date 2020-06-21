@@ -27,21 +27,23 @@ static void runtime(){
 	_stime = _etime;
 }
 
-static vector<string> str_split(string src, string sep){
-	vector<string> ret;
+static std::vector<std::string> str_split(const std::string &src, const std::string &sep){
+	std::vector<std::string> ret;
 	int s = 0;
-	while(1){
+	while(s <= src.size()){
+        if(s == src.size()){
+            ret.push_back("");
+            break;
+        }
+        
 		int e = src.find(sep, s);
-		if(e == string::npos){
+		if(e == std::string::npos){
 			e = src.size();
 		}
-		string p = src.substr(s, src.size() - s);
+		std::string p = src.substr(s, e - s);
 		ret.push_back(p);
 		
-		s = e + sep.size();
-		if(e > src.size()){
-			break;
-		}
+		s = e + 1;
 	}
 	return ret;
 }
